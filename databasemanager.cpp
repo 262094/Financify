@@ -1,26 +1,30 @@
 #include <QCryptographicHash>
 #include "databasemanager.h"
 
-DatabaseManager::DatabaseManager() {
-    db = QSqlDatabase::addDatabase("QMYSQL");
+DatabaseManager::DatabaseManager()
+{
+    db = QSqlDatabase::addDatabase("QMYSQL", "financify");
     db.setHostName("localhost");
     db.setUserName("root");
     db.setPassword("");
-    db.setDatabaseName("Financify");
+    db.setDatabaseName("financify");
     if (!db.open()) {
         qDebug() << "Database Error: " << db.lastError().text();
     }
 }
 
-DatabaseManager::~DatabaseManager() {
-    db.close();
+DatabaseManager::~DatabaseManager()
+{
+    QSqlDatabase::database("financify").close();
+    QSqlDatabase::removeDatabase("financify");
 }
 
-bool DatabaseManager::executeQuery() {
-    QSqlQuery q(db);
-    if (!q.exec())
+bool DatabaseManager::executeQuery()
+{
+    QSqlQuery query(db);
+    if (!query.exec())
     {
-        qDebug() << "Query Error: " << q.lastError().text();
+        qDebug() << "Query Error: " << query.lastError().text();
         return false;
     }
     return true;
@@ -29,29 +33,35 @@ bool DatabaseManager::executeQuery() {
 void DatabaseManager::Login(QString username, QString password)
 {
     QByteArray pass = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5).toHex();
+    int log = 0;
+    index = 2;
 
     QSqlQuery query(db);
     query.prepare("SELECT * FROM users WHERE username = :username AND password = :password");
     query.bindValue(":username", username);
     query.bindValue(":password", pass);
 
-    if(query.exec())
+    if(query.exec() && query.next())
     {
-        qDebug() << "";
-
+        log++;
     }
 
-    else
+    switch (log)
     {
-        qDebug() << "Query Error: " << query.lastError().text();
+        case 0:
+            QMessageBox::about(this, "error", "Your login or password is not correct");
+            break;
+        case 1:
+            emit LoginSuccess(index);
+            break;
     }
-
 }
 
 void DatabaseManager::Registration(QString username, QString password, QString name, QString email)
 {
     QSqlQuery query(db);
     bool check=true;
+    index = 0;
 
     query.prepare("select * from users where username=:username");
     query.bindValue(":username", username);
@@ -60,7 +70,6 @@ void DatabaseManager::Registration(QString username, QString password, QString n
 
     query.exec();
 
-
     while(query.next())
     {
         QString usernamedb = query.value(1).toString();
@@ -68,8 +77,6 @@ void DatabaseManager::Registration(QString username, QString password, QString n
         {
             check=false;
         }
-
-
     }
 
     if(check)
@@ -79,11 +86,7 @@ void DatabaseManager::Registration(QString username, QString password, QString n
         query.bindValue(":password", pass);
         query.bindValue(":name", name);
         query.bindValue(":email", email);
-
-        if(query.exec())
-            qDebug() << "";
-
-        else
-            qDebug() << "Query Error: " << query.lastError().text();
+        query.exec();
+        emit RegisterSuccess(index);
     }
 }

@@ -147,7 +147,8 @@ QWidget#closeButton_2:pressed{
         </property>
         <property name="font">
          <font>
-          <pointsize>33</pointsize>
+          <family>Poppins</family>
+          <pointsize>28</pointsize>
           <bold>false</bold>
           <stylestrategy>PreferAntialias</stylestrategy>
           <kerning>true</kerning>
@@ -175,7 +176,8 @@ QWidget#closeButton_2:pressed{
         </property>
         <property name="font">
          <font>
-          <pointsize>17</pointsize>
+          <family>Poppins</family>
+          <pointsize>18</pointsize>
           <bold>false</bold>
           <stylestrategy>PreferAntialias</stylestrategy>
           <kerning>true</kerning>
@@ -204,6 +206,7 @@ money in the best way!</string>
         </property>
         <property name="font">
          <font>
+          <family>Poppins</family>
           <pointsize>12</pointsize>
           <bold>false</bold>
          </font>
@@ -240,6 +243,7 @@ QWidget#signupButton:pressed{
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>33</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -269,6 +273,7 @@ to Your Account</string>
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -297,6 +302,7 @@ to Your Account</string>
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -363,6 +369,7 @@ to Your Account</string>
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>12</pointsize>
          <bold>false</bold>
         </font>
@@ -439,8 +446,9 @@ border-bottom-left-radius:40px;
         </property>
         <property name="font">
          <font>
+          <family>Poppins</family>
           <pointsize>28</pointsize>
-          <bold>true</bold>
+          <bold>false</bold>
           <stylestrategy>PreferAntialias</stylestrategy>
           <kerning>true</kerning>
          </font>
@@ -468,6 +476,7 @@ Financy App !</string>
         </property>
         <property name="font">
          <font>
+          <family>Poppins</family>
           <pointsize>17</pointsize>
           <bold>false</bold>
           <stylestrategy>PreferAntialias</stylestrategy>
@@ -486,6 +495,42 @@ money in the best way!</string>
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <widget class="QPushButton" name="signinButton">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>520</y>
+          <width>240</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Poppins</family>
+          <pointsize>12</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget#signinButton{
+	background-color: rgb(255, 255, 255);
+	border-radius:20px;
+	color: rgb(35,35,35);
+}
+
+QWidget#signinButton:pressed{
+	background-color: rgb(170, 170, 170);
+	border-radius:20px;
+	color: rgb(35,35,35);
+}</string>
+        </property>
+        <property name="text">
+         <string>Sign In</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
       </widget>
       <widget class="QLabel" name="mainLabel_8">
        <property name="geometry">
@@ -498,6 +543,7 @@ money in the best way!</string>
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>33</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -527,6 +573,7 @@ money in the best way!</string>
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -555,6 +602,7 @@ money in the best way!</string>
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -621,6 +669,7 @@ money in the best way!</string>
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>12</pointsize>
          <bold>false</bold>
         </font>
@@ -672,6 +721,7 @@ QWidget#registerButton:pressed{
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -700,6 +750,7 @@ QWidget#registerButton:pressed{
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -962,6 +1013,7 @@ border-bottom-right-radius:40px;
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>25</pointsize>
          <stylestrategy>PreferAntialias</stylestrategy>
          <kerning>true</kerning>
@@ -987,6 +1039,7 @@ your financy</string>
        </property>
        <property name="font">
         <font>
+         <family>Poppins</family>
          <pointsize>10</pointsize>
          <stylestrategy>PreferAntialias</stylestrategy>
          <kerning>true</kerning>
