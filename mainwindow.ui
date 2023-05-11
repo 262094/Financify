@@ -26,9 +26,7 @@
    </size>
   </property>
   <property name="font">
-   <font>
-    <family>Poppins</family>
-   </font>
+   <font/>
   </property>
   <property name="windowTitle">
    <string/>
@@ -58,7 +56,7 @@ border-radius:40px;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="loginPage">
      <widget class="QWidget" name="mainWidget" native="true">
@@ -150,7 +148,7 @@ QWidget#closeButton_2:pressed{
         <property name="font">
          <font>
           <pointsize>33</pointsize>
-          <bold>true</bold>
+          <bold>false</bold>
           <stylestrategy>PreferAntialias</stylestrategy>
           <kerning>true</kerning>
          </font>
@@ -177,7 +175,6 @@ QWidget#closeButton_2:pressed{
         </property>
         <property name="font">
          <font>
-          <family>Poppins</family>
           <pointsize>17</pointsize>
           <bold>false</bold>
           <stylestrategy>PreferAntialias</stylestrategy>
@@ -208,7 +205,7 @@ money in the best way!</string>
         <property name="font">
          <font>
           <pointsize>12</pointsize>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -243,9 +240,8 @@ QWidget#signupButton:pressed{
        </property>
        <property name="font">
         <font>
-         <family>Poppins</family>
          <pointsize>33</pointsize>
-         <bold>true</bold>
+         <bold>false</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
          <kerning>true</kerning>
         </font>
@@ -273,7 +269,6 @@ to Your Account</string>
        </property>
        <property name="font">
         <font>
-         <family>Poppins</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -302,7 +297,6 @@ to Your Account</string>
        </property>
        <property name="font">
         <font>
-         <family>Poppins</family>
          <pointsize>10</pointsize>
         </font>
        </property>
@@ -369,9 +363,8 @@ to Your Account</string>
        </property>
        <property name="font">
         <font>
-         <family>Poppins</family>
          <pointsize>12</pointsize>
-         <bold>true</bold>
+         <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -403,12 +396,406 @@ QWidget#loginButton:pressed{
       <zorder>loginButton</zorder>
      </widget>
     </widget>
-    <widget class="QWidget" name="registerPage"/>
+    <widget class="QWidget" name="registerPage">
+     <widget class="QWidget" name="mainWidget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>900</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget#mainWidget_2{
+background-color: rgb(255,255,255);
+border-radius:40px;
+}</string>
+      </property>
+      <widget class="QWidget" name="signupWidget_2" native="true">
+       <property name="geometry">
+        <rect>
+         <x>2</x>
+         <y>2</y>
+         <width>350</width>
+         <height>596</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#signupWidget_2{
+background-color: rgb(31,31,31);
+border-top-left-radius:40px;
+border-bottom-left-radius:40px;
+}</string>
+       </property>
+       <widget class="QLabel" name="mainLabel_6">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>140</y>
+          <width>250</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>28</pointsize>
+          <bold>true</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255,255,255);
+</string>
+        </property>
+        <property name="text">
+         <string>Best 
+Financy App !</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="mainLabel_7">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>220</y>
+          <width>300</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>17</pointsize>
+          <bold>false</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255,255,255);
+</string>
+        </property>
+        <property name="text">
+         <string>Sign up and start saving 
+money in the best way!</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="mainLabel_8">
+       <property name="geometry">
+        <rect>
+         <x>484</x>
+         <y>50</y>
+         <width>300</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>33</pointsize>
+         <bold>false</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(31,31,31);
+</string>
+       </property>
+       <property name="text">
+        <string>Get Started 
+ Now</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="loginEdit_2">
+       <property name="geometry">
+        <rect>
+         <x>504</x>
+         <y>340</y>
+         <width>260</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#loginEdit_2{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="inputMask">
+        <string extracomment="login"/>
+       </property>
+       <property name="placeholderText">
+        <string>username</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="passwordEdit_2">
+       <property name="geometry">
+        <rect>
+         <x>504</x>
+         <y>410</y>
+         <width>260</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#passwordEdit_2{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>password</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="loginWidget_2" native="true">
+       <property name="geometry">
+        <rect>
+         <x>484</x>
+         <y>340</y>
+         <width>300</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#loginWidget_2{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+}</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="passwordWidget_2" native="true">
+       <property name="geometry">
+        <rect>
+         <x>484</x>
+         <y>410</y>
+         <width>300</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#passwordWidget_2{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+}</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="registerButton">
+       <property name="geometry">
+        <rect>
+         <x>504</x>
+         <y>520</y>
+         <width>240</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#registerButton{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+	color: rgb(255,255,255);
+}
+
+QWidget#registerButton:pressed{
+	background-color: rgb(195, 195, 195);
+	border-radius:20px;
+	color: rgb(255,255,255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Sign Up</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QWidget" name="loginWidget_3" native="true">
+       <property name="geometry">
+        <rect>
+         <x>484</x>
+         <y>270</y>
+         <width>300</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#loginWidget_3{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+}</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="emailEdit">
+       <property name="geometry">
+        <rect>
+         <x>504</x>
+         <y>270</y>
+         <width>260</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#emailEdit{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="inputMask">
+        <string extracomment="login"/>
+       </property>
+       <property name="placeholderText">
+        <string>email</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="nameEdit">
+       <property name="geometry">
+        <rect>
+         <x>504</x>
+         <y>200</y>
+         <width>260</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#nameEdit{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="inputMask">
+        <string extracomment="login"/>
+       </property>
+       <property name="placeholderText">
+        <string>name</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="loginWidget_4" native="true">
+       <property name="geometry">
+        <rect>
+         <x>484</x>
+         <y>200</y>
+         <width>300</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#loginWidget_4{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+}</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="closeButton_3">
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>30</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#closeButton_3{
+	image:url(:/new/prefix1/icons/close.png);
+}
+
+QWidget#closeButton_3:pressed{
+	image:url(:/new/prefix1/icons/close_pressed.png);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <zorder>signupWidget_2</zorder>
+      <zorder>mainLabel_8</zorder>
+      <zorder>loginWidget_2</zorder>
+      <zorder>passwordWidget_2</zorder>
+      <zorder>registerButton</zorder>
+      <zorder>loginEdit_2</zorder>
+      <zorder>passwordEdit_2</zorder>
+      <zorder>loginWidget_3</zorder>
+      <zorder>emailEdit</zorder>
+      <zorder>loginWidget_4</zorder>
+      <zorder>nameEdit</zorder>
+      <zorder>closeButton_3</zorder>
+     </widget>
+    </widget>
     <widget class="QWidget" name="mainPage">
      <property name="font">
-      <font>
-       <family>Poppins</family>
-      </font>
+      <font/>
      </property>
      <widget class="QPushButton" name="closeButton">
       <property name="geometry">
@@ -575,7 +962,6 @@ border-bottom-right-radius:40px;
        </property>
        <property name="font">
         <font>
-         <family>Poppins</family>
          <pointsize>25</pointsize>
          <stylestrategy>PreferAntialias</stylestrategy>
          <kerning>true</kerning>
@@ -601,7 +987,6 @@ your financy</string>
        </property>
        <property name="font">
         <font>
-         <family>Poppins</family>
          <pointsize>10</pointsize>
          <stylestrategy>PreferAntialias</stylestrategy>
          <kerning>true</kerning>
@@ -643,6 +1028,22 @@ your financy</string>
   </connection>
   <connection>
    <sender>closeButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>849</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>closeButton_3</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
