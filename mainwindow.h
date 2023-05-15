@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMouseEvent>
+
+#include "usermanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +20,22 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    userManager * m_userManager;
+
+    int m_nMouseClick_X_Coordinate;
+    int m_nMouseClick_Y_Coordinate;
+
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+
+public slots:
+    void nextWindow(int);
+
+private slots:
+    void on_loginButton_clicked();
+    void on_registerButton_clicked();
+    void on_signupButton_clicked();
+    void on_signinButton_clicked();
 };
 #endif // MAINWINDOW_H
