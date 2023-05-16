@@ -3,6 +3,9 @@
 
 
 #include <QMainWindow>
+#include <QRegularExpression>
+#include <QCryptographicHash>
+
 #include "databasemanager.h"
 
 
@@ -24,6 +27,9 @@ signals:
 
 private:
     DatabaseManager * dbManager;
+    bool isValidEmail(const QString& email);
+    bool isValidPassword(const QString& password);
+
     int index = 0;
 
 };

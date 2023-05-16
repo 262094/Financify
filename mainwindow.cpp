@@ -7,6 +7,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->showButton->setIcon(QIcon(":/new/prefix1/icons/eye.svg"));
+    ui->showButton->setIconSize(QSize(24, 24));
+    ui->showButton_2->setIcon(QIcon(":/new/prefix1/icons/eye.svg"));
+    ui->showButton_2->setIconSize(QSize(24, 24));
+
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
@@ -70,6 +75,40 @@ void MainWindow::on_signinButton_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+
+void MainWindow::on_showButton_clicked()
+{
+    if(ui->passwordEdit_2->echoMode() == QLineEdit::Password)
+    {
+        ui->showButton->setIcon(QIcon(":/new/prefix1/icons/eye-off.svg"));
+        ui->passwordEdit_2->setEchoMode(QLineEdit::Normal);
+    }
+    else
+    {
+        ui->passwordEdit_2->setEchoMode(QLineEdit::Password);
+        ui->showButton->setIcon(QIcon(":/new/prefix1/icons/eye.svg"));
+    }
+}
+
+void MainWindow::on_showButton_2_clicked()
+{
+    if(ui->passwordEdit->echoMode() == QLineEdit::Password)
+    {
+        ui->showButton_2->setIcon(QIcon(":/new/prefix1/icons/eye-off.svg"));
+        ui->passwordEdit->setEchoMode(QLineEdit::Normal);
+    }
+    else
+    {
+        ui->passwordEdit->setEchoMode(QLineEdit::Password);
+        ui->showButton_2->setIcon(QIcon(":/new/prefix1/icons/eye.svg"));
+    }
+}
+
+
+void MainWindow::on_infoButton_clicked()
+{
+    QMessageBox::about(this, "Information", "The password must be at least 8 characters long, with at least one lowercase letter, one uppercase letter and one number.");
+}
 
 void MainWindow::nextWindow(int index)
 {

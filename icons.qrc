@@ -6,11 +6,9 @@
         <file>icons/close.png</file>
         <file>icons/close_2.png</file>
         <file>icons/close_pressed.png</file>
-        <file>icons/minimize.png</file>
-        <file>icons/minimize_2.png</file>
-        <file>icons/minimize_pressed.png</file>
-    </qresource>
-    <qresource prefix="/new/prefix2">
-        <file>images/OAK41Y0.jpg</file>
+        <file>icons/eye.svg</file>
+        <file>icons/eye-off.svg</file>
+        <file>icons/info.svg</file>
+        <file>icons/info_pressed.svg</file>
     </qresource>
 </RCC>

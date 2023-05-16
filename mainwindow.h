@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMouseEvent>
 
+
 #include "usermanager.h"
 
 QT_BEGIN_NAMESPACE
@@ -37,5 +38,8 @@ private slots:
     void on_registerButton_clicked();
     void on_signupButton_clicked();
     void on_signinButton_clicked();
+    void on_showButton_clicked();
+    void on_infoButton_clicked();
+    void on_showButton_2_clicked();
 };
 #endif // MAINWINDOW_H
