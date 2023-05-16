@@ -73,6 +73,6 @@ bool userManager::isValidEmail(const QString& email)
 }
 
 bool userManager::isValidPassword(const QString& password) {
-    static QRegularExpression passwordRegex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
+    static QRegularExpression passwordRegex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%])[a-zA-Z\\d!@#$%]{8,}$");
     return passwordRegex.match(password).hasMatch();
 }

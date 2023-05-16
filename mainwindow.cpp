@@ -58,21 +58,22 @@ void MainWindow::on_registerButton_clicked()
     QString email = ui->emailEdit->text();
 
     m_userManager->Registration(username, password, name, email);
-
-    ui->loginEdit_2->clear();
-    ui->passwordEdit_2->clear();
-    ui->nameEdit->clear();
-    ui->emailEdit->clear();
 }
 
 void MainWindow::on_signupButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+    ui->passwordEdit->clear();
+    ui->loginEdit->clear();
 }
 
 void MainWindow::on_signinButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->loginEdit_2->clear();
+    ui->passwordEdit_2->clear();
+    ui->nameEdit->clear();
+    ui->emailEdit->clear();
 }
 
 
@@ -112,6 +113,14 @@ void MainWindow::on_infoButton_clicked()
 
 void MainWindow::nextWindow(int index)
 {
+    ui->loginEdit_2->clear();
+    ui->passwordEdit_2->clear();
+    ui->nameEdit->clear();
+    ui->emailEdit->clear();
+
+    ui->passwordEdit->clear();
+    ui->loginEdit->clear();
+
     switch (index)
     {
         case 0:
