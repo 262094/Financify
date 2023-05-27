@@ -1,16 +1,24 @@
 <RCC>
     <qresource prefix="/new/prefix1">
-        <file>icons/settings.png</file>
-        <file>icons/account.png</file>
-        <file>icons/chart.png</file>
         <file>icons/close.png</file>
         <file>icons/close_2.png</file>
         <file>icons/close_pressed.png</file>
-        <file>icons/minimize.png</file>
-        <file>icons/minimize_2.png</file>
-        <file>icons/minimize_pressed.png</file>
-    </qresource>
-    <qresource prefix="/new/prefix2">
-        <file>images/OAK41Y0.jpg</file>
+        <file>icons/eye.svg</file>
+        <file>icons/eye-off.svg</file>
+        <file>icons/info.svg</file>
+        <file>icons/info_pressed.svg</file>
+        <file>icons/home.svg</file>
+        <file>icons/credit-card.svg</file>
+        <file>icons/home_clicked.svg</file>
+        <file>icons/pie-chart.svg</file>
+        <file>icons/pie-chart_clicked.svg</file>
+        <file>icons/settings.svg</file>
+        <file>icons/settings_clicked.svg</file>
+        <file>icons/user.svg</file>
+        <file>icons/user_clicked.svg</file>
+        <file>icons/arrow-down.svg</file>
+        <file>icons/arrow-down_red.svg</file>
+        <file>icons/arrow-up.svg</file>
+        <file>icons/plus.svg</file>
     </qresource>
 </RCC>

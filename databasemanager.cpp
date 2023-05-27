@@ -5,7 +5,7 @@ DatabaseManager::DatabaseManager()
 {
     m_databaseReader = new DatabaseReader();
 
-    if (m_databaseReader->readLoginData("db_login.txt"))
+    if (m_databaseReader->readLoginData("db_login.conf"))
     {
         db = QSqlDatabase::addDatabase("QMYSQL", "financify");
         db.setHostName(m_databaseReader->hostname);
