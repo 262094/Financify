@@ -4,7 +4,7 @@
 Transactions::Transactions(QWidget *parent)
     : QMainWindow{parent}
 {
-     dbManager = new DatabaseManager();
+    dbManager = new DatabaseManager();
 }
 
 void Transactions::AddTransaction(float amount, QDateTime date, QString type)
@@ -17,11 +17,6 @@ void Transactions::AddTransaction(float amount, QDateTime date, QString type)
 
     if(!dbManager->executeQuery(query_prepare))
         QMessageBox::about(this, "error", "Something went wrong. Try one more time.");
-    else
-        delete dbManager;
-}
 
-void Transactions::ShowTransactions()
-{
-
+    dbManager->GetAmount();
 }

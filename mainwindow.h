@@ -25,11 +25,13 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    userManager * m_userManager;
-    transactionsWindow * m_transactionsWindow;
+    userManager * m_userManager{nullptr};
+    transactionsWindow * m_transactionsWindow{nullptr};
 
     int m_nMouseClick_X_Coordinate;
     int m_nMouseClick_Y_Coordinate;
+
+    void showBalance();
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;

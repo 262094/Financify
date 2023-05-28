@@ -23,7 +23,7 @@ private slots:
 private:
     Ui::transactionsWindow *ui;
 
-    Transactions * m_transactions;
+    Transactions * m_transactions{nullptr};
 
     int m_nMouseClick_X_Coordinate;
     int m_nMouseClick_Y_Coordinate;

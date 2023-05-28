@@ -22,7 +22,6 @@ DatabaseManager::DatabaseManager()
 DatabaseManager::~DatabaseManager()
 {
     QSqlDatabase::database("financify").close();
-    QSqlDatabase::removeDatabase("financify");
 }
 
 bool DatabaseManager::executeQuery(QString qry)
@@ -51,6 +50,7 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
             query_prepare = QString("SELECT * FROM users WHERE username = '%1' AND password = '%2'").arg(username, password); //LOGIN
             query.prepare(query_prepare);
             query.exec();
+
             while(query.next())
             {
                 user_id = query.value(0).toInt();
@@ -60,6 +60,7 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
             }
 
             break;
+
         case 1:
             query_prepare = QString("SELECT * FROM users WHERE username= '%1'").arg(username); //REGISTER
             query.prepare(query_prepare);
@@ -77,4 +78,24 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
     }
 
     return 0;
+}
+
+void DatabaseManager::GetAmount()
+{
+    QSqlQuery query(db);
+    QString type = "Income";
+
+    UserSession& userSession = UserSession::getInstance();
+    query.prepare("SELECT * FROM transactions WHERE user_id = :user_id AND type = :type"); //GETTING Income
+    query.bindValue(":id", userSession.getUserId());
+    query.bindValue(":type", type);
+    if(query.exec() && query.next())
+    {
+        while(query.next())
+        {
+            UserSession::getInstance().addIncome(query.value(4).toString());
+        }
+    }
+    else
+        qDebug() << "Query Error: " << query.lastError().text();
 }

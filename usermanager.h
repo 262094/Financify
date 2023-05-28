@@ -26,7 +26,7 @@ signals:
     void RegisterSuccess(int index);
 
 private:
-    DatabaseManager * dbManager;
+    DatabaseManager * dbManager{nullptr};
     bool isValidEmail(const QString& email);
     bool isValidPassword(const QString& password);
 

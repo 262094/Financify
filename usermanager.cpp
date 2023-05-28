@@ -2,7 +2,7 @@
 
 userManager::userManager()
 {
-    dbManager = new DatabaseManager();
+
 }
 
 userManager::~userManager()
@@ -12,6 +12,8 @@ userManager::~userManager()
 
 void userManager::Login(QString username, QString password)
 {
+    dbManager = new DatabaseManager();
+
     QByteArray pass = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5).toHex();
     int log = 0;
     index = 0;
@@ -28,13 +30,16 @@ void userManager::Login(QString username, QString password)
         break;
     case 1:
         emit LoginSuccess(index);
-        delete dbManager;
         break;
     }
+
+    delete dbManager;
 }
 
 void userManager::Registration(QString username, QString password, QString name, QString email)
 {
+    dbManager = new DatabaseManager();
+
     QByteArray pass = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5).toHex();
 
     bool check = true;

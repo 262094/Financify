@@ -21,14 +21,13 @@ public:
 
     bool executeQuery(QString qry);
     bool nextQuery(QString username, QString password, int Index);
+    void GetAmount();
 
 private:
     QSqlDatabase db;
-    DatabaseReader * m_databaseReader;
+    DatabaseReader * m_databaseReader{nullptr};
     UserSession userSession;
 
-signals:
-    void UserId(int user_id);
 };
 
 #endif // DATABASEMANAGER_H

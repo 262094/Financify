@@ -17,10 +17,9 @@ public:
     explicit Transactions(QWidget *parent = nullptr);
 
     void AddTransaction(float amount, QDateTime date, QString type);
-    void ShowTransactions();
 
 private:
-    DatabaseManager * dbManager;
+    DatabaseManager * dbManager{nullptr};
 
 };
 

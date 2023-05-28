@@ -380,7 +380,10 @@ to Your Account</string>
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">QWidget#showButton_2:pressed{
+border: none;
+outline: none;
+}</string>
         </property>
         <property name="text">
          <string/>
@@ -900,7 +903,10 @@ image:url(:/new/prefix1/icons/close_pressed.png);
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">QWidget#showButton{
+border: none;
+outline: none;
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -1458,6 +1464,50 @@ background-color:transparent;
         </property>
         <property name="text">
          <string>Expense today</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="income">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>90</y>
+          <width>81</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Poppins</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="expense">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>90</y>
+          <width>81</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Poppins</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>
