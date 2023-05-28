@@ -1276,7 +1276,7 @@ border-bottom-right-radius:40px;
          <string>activity</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="chartType">
         <property name="geometry">
          <rect>
           <x>310</x>
@@ -1287,25 +1287,26 @@ border-bottom-right-radius:40px;
         </property>
         <property name="font">
          <font>
-          <family>Poppins</family>
+          <family>Poppins ExtraBold</family>
           <pointsize>12</pointsize>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QComboBox {
+         <string notr="true">QComboBox#chartType {
 background-color: transparent;
 border: none;
 outline: none;
 color: rgb(52, 52, 52);
 }
-QComboBox:drop-down {
+QComboBox#chartType:drop-down {
 background-color: transparent;
 border: none;
 color: rgb(52, 52, 52);
 outline: none;
 }
-QComboBox::down-arrow {
-	image: url(:/new/prefix1/icons/arrow-down.svg);
+QComboBox#chartType:down-arrow {
+image: url(:/new/prefix1/icons/chevron-down_black.svg);
 }</string>
         </property>
         <item>
@@ -1642,7 +1643,7 @@ QWidget#addGoalsButton:hover{
 }</string>
         </property>
         <property name="text">
-         <string>Add Funds</string>
+         <string>Add Goal</string>
         </property>
         <property name="flat">
          <bool>true</bool>

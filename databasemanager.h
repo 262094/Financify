@@ -9,6 +9,7 @@
 #include <QMessageBox>
 
 #include "databasereader.h"
+#include "usersession.h"
 
 class DatabaseManager: public QMainWindow
 {
@@ -24,6 +25,10 @@ public:
 private:
     QSqlDatabase db;
     DatabaseReader * m_databaseReader;
+    UserSession userSession;
+
+signals:
+    void UserId(int user_id);
 };
 
 #endif // DATABASEMANAGER_H

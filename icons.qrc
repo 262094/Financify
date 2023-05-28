@@ -20,5 +20,8 @@
         <file>icons/arrow-down_red.svg</file>
         <file>icons/arrow-up.svg</file>
         <file>icons/plus.svg</file>
+        <file>icons/chevron-down.svg</file>
+        <file>icons/chevron-up.svg</file>
+        <file>icons/chevron-down_black.svg</file>
     </qresource>
 </RCC>

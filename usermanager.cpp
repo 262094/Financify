@@ -28,6 +28,7 @@ void userManager::Login(QString username, QString password)
         break;
     case 1:
         emit LoginSuccess(index);
+        delete dbManager;
         break;
     }
 }
@@ -53,7 +54,10 @@ void userManager::Registration(QString username, QString password, QString name,
         {
             QString query_prepare = QString("INSERT INTO users (username, password, name, email) VALUES ('%1', '%2', '%3', '%4')").arg(username, pass, name, email);
             if(dbManager->executeQuery(query_prepare))
+            {
                 emit RegisterSuccess(index);
+                delete dbManager;
+            }
             else
                 QMessageBox::about(this, "error", "Something went wrong. Try one more time.");
         }

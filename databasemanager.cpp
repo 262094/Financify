@@ -43,15 +43,21 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
     QSqlQuery query(db);
     QString query_prepare;
 
+    int user_id = 0;
+
     switch(index)
     {
         case 0:
             query_prepare = QString("SELECT * FROM users WHERE username = '%1' AND password = '%2'").arg(username, password); //LOGIN
             query.prepare(query_prepare);
             query.exec();
-            if(!query.next())
-                return false;
-            return true;
+            while(query.next())
+            {
+                user_id = query.value(0).toInt();
+                UserSession& userSession = UserSession::getInstance();
+                userSession.setUserId(user_id);
+                return true;
+            }
 
             break;
         case 1:

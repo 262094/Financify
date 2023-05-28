@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "databasemanager.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_userManager = new userManager();
+    UserSession userSession;
 
     connect(m_userManager, m_userManager->LoginSuccess, this, &MainWindow::nextWindow);
     connect(m_userManager, m_userManager->RegisterSuccess, this, &MainWindow::nextWindow);
@@ -145,3 +145,16 @@ void MainWindow::nextWindow(int index)
             break;
     }
 }
+
+void MainWindow::on_addFundsButton_clicked()
+{
+    m_transactionsWindow = new transactionsWindow();
+    m_transactionsWindow->show();
+}
+
+
+void MainWindow::on_closeButton_clicked()
+{
+    m_transactionsWindow->reject();
+}
+

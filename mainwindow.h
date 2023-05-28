@@ -6,6 +6,9 @@
 #include <QButtonGroup>
 
 #include "usermanager.h"
+#include "transactionsWindow.h"
+#include "databasemanager.h"
+#include "transactions.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +26,7 @@ private:
     Ui::MainWindow *ui;
 
     userManager * m_userManager;
+    transactionsWindow * m_transactionsWindow;
 
     int m_nMouseClick_X_Coordinate;
     int m_nMouseClick_Y_Coordinate;
@@ -41,5 +45,7 @@ private slots:
     void on_showButton_clicked();
     void on_infoButton_clicked();
     void on_showButton_2_clicked();
+    void on_addFundsButton_clicked();
+    void on_closeButton_clicked();
 };
 #endif // MAINWINDOW_H
