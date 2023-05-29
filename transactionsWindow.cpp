@@ -1,11 +1,10 @@
-#include <QMouseEvent>
-
 #include "transactionsWindow.h"
 #include "ui_transactionsWindow.h"
 
-transactionsWindow::transactionsWindow(QWidget *parent) :
+transactionsWindow::transactionsWindow(Transactions* transactions, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::transactionsWindow)
+    ui(new Ui::transactionsWindow),
+    m_transactions(transactions)
 {
     ui->setupUi(this);
     setWindowModality(Qt::ApplicationModal);
@@ -14,6 +13,7 @@ transactionsWindow::transactionsWindow(QWidget *parent) :
     setAttribute(Qt::WA_TransparentForMouseEvents);
     ui->dateEdit->setDateTime(QDateTime::currentDateTime());
 }
+
 
 transactionsWindow::~transactionsWindow()
 {
@@ -34,7 +34,6 @@ void transactionsWindow::mouseMoveEvent(QMouseEvent *event)
 
 void transactionsWindow::on_submitButton_clicked()
 {
-    m_transactions = new Transactions();
     m_transactions->AddTransaction(ui->amountEdit->value(), ui->dateEdit->dateTime(), ui->typeEdit->currentText());
 }
 
@@ -45,4 +44,3 @@ void transactionsWindow::show()
         QDialog::show();
     }
 }
-

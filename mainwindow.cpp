@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_userManager = new userManager();
+    m_transactions = new Transactions(this);
+
 
     connect(m_userManager, m_userManager->LoginSuccess, this, &MainWindow::nextWindow);
     connect(m_userManager, m_userManager->RegisterSuccess, this, &MainWindow::nextWindow);
@@ -154,7 +156,7 @@ void MainWindow::on_addFundsButton_clicked()
     if (!m_transactionsWindow || !m_transactionsWindow->isVisible())
     {
         delete m_transactionsWindow;
-        m_transactionsWindow = new transactionsWindow(this);
+        m_transactionsWindow = new transactionsWindow(m_transactions, this);
         m_transactionsWindow->show();
     }
 }
@@ -169,4 +171,5 @@ void MainWindow::showBalance()
 {
     ui->income->setText(QString::number(UserSession::getInstance().getTotalIncome()));
     ui->expense->setText(QString::number(UserSession::getInstance().getTotalExpenses()));
+    update();
 }

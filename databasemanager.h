@@ -7,6 +7,7 @@
 #include <QtSql/QSqlError>
 #include <QString>
 #include <QMessageBox>
+#include <QCryptographicHash>
 
 #include "databasereader.h"
 #include "usersession.h"

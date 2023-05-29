@@ -2,6 +2,7 @@
 #define TRANSACTIONSWINDOW_H
 
 #include <QDialog>
+#include <QMouseEvent>
 
 #include "transactions.h"
 
@@ -16,7 +17,7 @@ class transactionsWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit transactionsWindow(QWidget *parent = nullptr);
+    explicit transactionsWindow(Transactions* transactions, QWidget *parent = nullptr);
     ~transactionsWindow();
 
     void show();
@@ -27,7 +28,7 @@ private slots:
 private:
     Ui::transactionsWindow *ui;
 
-    Transactions * m_transactions{nullptr};
+    Transactions* m_transactions;
 
     int m_nMouseClick_X_Coordinate;
     int m_nMouseClick_Y_Coordinate;

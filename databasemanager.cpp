@@ -1,5 +1,3 @@
-#include <QCryptographicHash>
-
 #include "databasemanager.h"
 
 DatabaseManager& DatabaseManager::getInstance()
@@ -18,7 +16,7 @@ DatabaseManager::DatabaseManager()
         QSqlDatabase::removeDatabase("financify");
     }
 
-    if (m_databaseReader->readLoginData("db_login.conf"))
+    if (m_databaseReader->readLoginData("db_login.ini"))
     {
         db = QSqlDatabase::addDatabase("QMYSQL", "financify");
         db.setHostName(m_databaseReader->hostname);

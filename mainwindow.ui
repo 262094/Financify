@@ -56,7 +56,7 @@ border-radius:40px;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="loginPage">
      <widget class="QWidget" name="mainWidget" native="true">
@@ -1678,18 +1678,12 @@ QWidget#addFundsButton:hover{
 	background-color: rgb(255, 255, 255);
 	border-radius:20px;
 	color: rgb(35,35,35);
-    border-width: 2px;
-    border-style:  dashed;
-    border-color:  rgb(179, 179, 179);
 }
 
 QWidget#addGoalsButton:hover{
 	background-color: rgb(170, 170, 170);
 	border-radius:20px;
 	color: rgb(35,35,35);
-    border-width: 2px;
-    border-style:  dashed;
-    border-color:  rgb(179, 179, 179);
 }</string>
         </property>
         <property name="text">

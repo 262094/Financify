@@ -14,6 +14,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class Transactions;
 class transactionsWindow;
 
 class MainWindow : public QMainWindow
@@ -31,6 +32,7 @@ private:
 
     userManager * m_userManager{nullptr};
     transactionsWindow * m_transactionsWindow{nullptr};
+    Transactions* m_transactions{nullptr};
     DatabaseManager& m_dbManager;
 
     int m_nMouseClick_X_Coordinate;
