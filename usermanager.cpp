@@ -1,9 +1,7 @@
 #include "usermanager.h"
 
 userManager::userManager()
-{
-
-}
+    : m_dbManager(DatabaseManager::getInstance()){}
 
 userManager::~userManager()
 {
@@ -12,13 +10,11 @@ userManager::~userManager()
 
 void userManager::Login(QString username, QString password)
 {
-    dbManager = new DatabaseManager();
-
     QByteArray pass = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5).toHex();
     int log = 0;
     index = 0;
 
-    if(dbManager->nextQuery(username, pass, index))
+    if(m_dbManager.nextQuery(username, pass, index))
     {
         log++;
     }
@@ -33,19 +29,16 @@ void userManager::Login(QString username, QString password)
         break;
     }
 
-    delete dbManager;
 }
 
 void userManager::Registration(QString username, QString password, QString name, QString email)
 {
-    dbManager = new DatabaseManager();
-
     QByteArray pass = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5).toHex();
 
     bool check = true;
     index = 1;
 
-    if(!dbManager->nextQuery(username, pass, index))
+    if(!m_dbManager.nextQuery(username, pass, index))
     {
         check=false;
     }
@@ -58,10 +51,9 @@ void userManager::Registration(QString username, QString password, QString name,
         if(isEmailValid && isPasswordValid)
         {
             QString query_prepare = QString("INSERT INTO users (username, password, name, email) VALUES ('%1', '%2', '%3', '%4')").arg(username, pass, name, email);
-            if(dbManager->executeQuery(query_prepare))
+            if(m_dbManager.executeQuery(query_prepare))
             {
                 emit RegisterSuccess(index);
-                delete dbManager;
             }
             else
                 QMessageBox::about(this, "error", "Something went wrong. Try one more time.");

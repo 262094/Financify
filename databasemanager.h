@@ -11,11 +11,12 @@
 #include "databasereader.h"
 #include "usersession.h"
 
-class DatabaseManager: public QMainWindow
+class DatabaseManager
 {
-    Q_OBJECT
 
 public:
+    static DatabaseManager& getInstance();
+
     DatabaseManager();
     ~DatabaseManager();
 

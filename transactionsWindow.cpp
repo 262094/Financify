@@ -8,7 +8,7 @@ transactionsWindow::transactionsWindow(QWidget *parent) :
     ui(new Ui::transactionsWindow)
 {
     ui->setupUi(this);
-
+    setWindowModality(Qt::ApplicationModal);
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -36,5 +36,13 @@ void transactionsWindow::on_submitButton_clicked()
 {
     m_transactions = new Transactions();
     m_transactions->AddTransaction(ui->amountEdit->value(), ui->dateEdit->dateTime(), ui->typeEdit->currentText());
+}
+
+void transactionsWindow::show()
+{
+    if (!isVisible())
+    {
+        QDialog::show();
+    }
 }
 

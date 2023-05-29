@@ -4,6 +4,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , m_dbManager(DatabaseManager::getInstance())
 {
     ui->setupUi(this);
     ui->showButton->setIcon(QIcon(":/new/prefix1/icons/eye.svg"));
@@ -38,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete m_userManager;
     delete ui;
 }
 
@@ -136,7 +138,10 @@ void MainWindow::nextWindow(int index)
     switch (index)
     {
         case 0:
+            delete m_userManager;
             ui->stackedWidget->setCurrentIndex(2);
+            m_dbManager.GetAmount();
+            showBalance();
             break;
         case 1:
             ui->stackedWidget->setCurrentIndex(0);
@@ -146,9 +151,12 @@ void MainWindow::nextWindow(int index)
 
 void MainWindow::on_addFundsButton_clicked()
 {
-    m_transactionsWindow = new transactionsWindow();
-    m_transactionsWindow->show();
-    showBalance();
+    if (!m_transactionsWindow || !m_transactionsWindow->isVisible())
+    {
+        delete m_transactionsWindow;
+        m_transactionsWindow = new transactionsWindow(this);
+        m_transactionsWindow->show();
+    }
 }
 
 
@@ -159,6 +167,6 @@ void MainWindow::on_closeButton_clicked()
 
 void MainWindow::showBalance()
 {
-    ui->income->setText(UserSession::getInstance().getTotalIncome());
-    ui->expense->setText(UserSession::getInstance().getTotalExpenses());
+    ui->income->setText(QString::number(UserSession::getInstance().getTotalIncome()));
+    ui->expense->setText(QString::number(UserSession::getInstance().getTotalExpenses()));
 }

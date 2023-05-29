@@ -6,13 +6,15 @@
 #include <QButtonGroup>
 
 #include "usermanager.h"
-#include "transactionsWindow.h"
 #include "databasemanager.h"
+#include "transactionsWindow.h"
 #include "transactions.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class transactionsWindow;
 
 class MainWindow : public QMainWindow
 {
@@ -22,16 +24,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void showBalance();
+
 private:
     Ui::MainWindow *ui;
 
     userManager * m_userManager{nullptr};
     transactionsWindow * m_transactionsWindow{nullptr};
+    DatabaseManager& m_dbManager;
 
     int m_nMouseClick_X_Coordinate;
     int m_nMouseClick_Y_Coordinate;
-
-    void showBalance();
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;

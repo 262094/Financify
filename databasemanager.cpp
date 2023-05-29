@@ -1,9 +1,22 @@
 #include <QCryptographicHash>
+
 #include "databasemanager.h"
+
+DatabaseManager& DatabaseManager::getInstance()
+{
+    static DatabaseManager instance;
+    return instance;
+}
 
 DatabaseManager::DatabaseManager()
 {
     m_databaseReader = new DatabaseReader();
+
+    if (QSqlDatabase::contains("financify"))
+    {
+        QSqlDatabase::database("financify").close();
+        QSqlDatabase::removeDatabase("financify");
+    }
 
     if (m_databaseReader->readLoginData("db_login.conf"))
     {
@@ -84,16 +97,30 @@ void DatabaseManager::GetAmount()
 {
     QSqlQuery query(db);
     QString type = "Income";
+    QString type1 = "Expense";
 
     UserSession& userSession = UserSession::getInstance();
     query.prepare("SELECT * FROM transactions WHERE user_id = :user_id AND type = :type"); //GETTING Income
-    query.bindValue(":id", userSession.getUserId());
+    query.bindValue(":user_id", userSession.getUserId());
     query.bindValue(":type", type);
-    if(query.exec() && query.next())
+    if(query.exec())
     {
         while(query.next())
         {
-            UserSession::getInstance().addIncome(query.value(4).toString());
+            UserSession::getInstance().addIncome(query.value(4).toFloat());
+        }
+    }
+    else
+        qDebug() << "Query Error: " << query.lastError().text();
+
+    query.prepare("SELECT * FROM transactions WHERE user_id = :user_id AND type = :type"); //GETTING Income
+    query.bindValue(":user_id", userSession.getUserId());
+    query.bindValue(":type", type1);
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            UserSession::getInstance().addExpense(query.value(4).toFloat());
         }
     }
     else

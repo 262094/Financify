@@ -7,7 +7,10 @@
 
 #include "usersession.h"
 #include "databasemanager.h"
+#include "mainwindow.h"
 
+class MainWindow;
+class transactionsWindow;
 
 class Transactions : public QMainWindow
 {
@@ -19,7 +22,8 @@ public:
     void AddTransaction(float amount, QDateTime date, QString type);
 
 private:
-    DatabaseManager * dbManager{nullptr};
+    DatabaseManager& m_dbManager;
+    MainWindow* m_mainWindow;
 
 };
 

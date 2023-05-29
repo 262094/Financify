@@ -5,6 +5,8 @@
 
 #include "transactions.h"
 
+class Transactions;
+
 namespace Ui {
 class transactionsWindow;
 }
@@ -16,6 +18,8 @@ class transactionsWindow : public QDialog
 public:
     explicit transactionsWindow(QWidget *parent = nullptr);
     ~transactionsWindow();
+
+    void show();
 
 private slots:
     void on_submitButton_clicked();
