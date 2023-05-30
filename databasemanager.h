@@ -8,6 +8,7 @@
 #include <QString>
 #include <QMessageBox>
 #include <QCryptographicHash>
+#include <QDateTime>
 
 #include "databasereader.h"
 #include "usersession.h"
@@ -24,12 +25,12 @@ public:
     bool executeQuery(QString qry);
     bool nextQuery(QString username, QString password, int Index);
     void GetAmount();
+    void GetTotalAmount();
 
 private:
     QSqlDatabase db;
     DatabaseReader * m_databaseReader{nullptr};
     UserSession userSession;
-
 };
 
 #endif // DATABASEMANAGER_H

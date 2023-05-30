@@ -16,6 +16,9 @@ public:
     float getTotalExpenses() const;
     float getTotalIncome() const;
 
+    void setTotalAmount(float totalAmount);
+    float getTotalAmount() const;
+
 private:
     UserSession(const UserSession&) = delete;
     UserSession& operator=(const UserSession&) = delete;
@@ -23,6 +26,7 @@ private:
     int userId_;
     float totalExpenses_;
     float totalIncome_;
+    float totalAmount_;
 };
 
 #endif // USERSESSION_H

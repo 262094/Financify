@@ -70,7 +70,7 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
                 return true;
             }
 
-            break;
+        break;
 
         case 1:
             query_prepare = QString("SELECT * FROM users WHERE username= '%1'").arg(username); //REGISTER
@@ -85,7 +85,7 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
             }
             return true;
 
-            break;
+        break;
     }
 
     return 0;
@@ -98,6 +98,9 @@ void DatabaseManager::GetAmount()
     QString type1 = "Expense";
 
     UserSession& userSession = UserSession::getInstance();
+
+    QDateTime currentDate = QDateTime::currentDateTime();
+
     query.prepare("SELECT * FROM transactions WHERE user_id = :user_id AND type = :type"); //GETTING Income
     query.bindValue(":user_id", userSession.getUserId());
     query.bindValue(":type", type);
@@ -105,22 +108,76 @@ void DatabaseManager::GetAmount()
     {
         while(query.next())
         {
-            UserSession::getInstance().addIncome(query.value(4).toFloat());
+            QDateTime transactionDate = query.value(2).toDateTime();
+            if (transactionDate.date() == currentDate.date())
+            {
+                UserSession::getInstance().addIncome(query.value(4).toFloat());
+            }
         }
     }
     else
-        qDebug() << "Query Error: " << query.lastError().text();
+            qDebug() << "Query Error: " << query.lastError().text();
 
-    query.prepare("SELECT * FROM transactions WHERE user_id = :user_id AND type = :type"); //GETTING Income
+    query.prepare("SELECT * FROM transactions WHERE user_id = :user_id AND type = :type");
     query.bindValue(":user_id", userSession.getUserId());
     query.bindValue(":type", type1);
     if(query.exec())
     {
         while(query.next())
         {
-            UserSession::getInstance().addExpense(query.value(4).toFloat());
+            QDateTime transactionDate = query.value(2).toDateTime();
+
+            if (transactionDate.date() == currentDate.date())
+            {
+                UserSession::getInstance().addExpense(query.value(4).toFloat());
+            }
         }
     }
     else
         qDebug() << "Query Error: " << query.lastError().text();
+
+    GetTotalAmount();
+}
+
+void DatabaseManager::GetTotalAmount()
+{
+    UserSession& userSession = UserSession::getInstance();
+    int userId = userSession.getUserId();
+
+    QSqlQuery query(db);
+    QString type = "Income";
+    QString type1 = "Expense";
+
+    float totalIncome = 0;
+    float totalExpense = 0;
+
+    query.prepare("SELECT SUM(amount) FROM transactions WHERE user_id = :user_id AND type = :type");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":type", type);
+    if (query.exec() && query.next())
+    {
+        totalIncome = query.value(0).toFloat();
+
+    }
+    else
+    {
+        qDebug() << "Query Error: " << query.lastError().text();
+        return;
+    }
+
+    query.prepare("SELECT SUM(amount) FROM transactions WHERE user_id = :user_id AND type = :type");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":type", type1);
+    if (query.exec() && query.next())
+    {
+        totalExpense = query.value(0).toFloat();
+    }
+    else
+    {
+        qDebug() << "Query Error: " << query.lastError().text();
+        return;
+    }
+
+    float totalBudget = totalIncome - totalExpense;
+    userSession.setTotalAmount(totalBudget);
 }

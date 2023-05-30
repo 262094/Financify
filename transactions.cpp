@@ -25,5 +25,6 @@ void Transactions::AddTransaction(float amount, QDateTime date, QString type)
     else if (type == "Expense")
         UserSession::getInstance().addExpense(amount);
 
+    m_dbManager.GetTotalAmount();
     m_mainWindow->showBalance();
 }

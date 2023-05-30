@@ -171,5 +171,5 @@ void MainWindow::showBalance()
 {
     ui->income->setText(QString::number(UserSession::getInstance().getTotalIncome()));
     ui->expense->setText(QString::number(UserSession::getInstance().getTotalExpenses()));
-    update();
+    ui->totalBalance->setText(QString::number(UserSession::getInstance().getTotalAmount()));
 }
