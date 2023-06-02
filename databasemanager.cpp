@@ -181,3 +181,53 @@ void DatabaseManager::GetTotalAmount()
     float totalBudget = totalIncome - totalExpense;
     userSession.setTotalAmount(totalBudget);
 }
+
+void DatabaseManager::FetchAllData(QTableWidget* tableWidget, const QDateTime& startDateTime, const QDateTime& endDateTime)
+{
+    tableWidget->clear();
+    tableWidget->clearContents();
+    tableWidget->setRowCount(0);
+
+    QSqlQuery query(db);
+    query.prepare("SELECT date, type, amount FROM transactions WHERE user_id = :user_id AND date BETWEEN :start_date AND :end_date");
+    query.bindValue(":user_id", UserSession::getInstance().getUserId());
+    query.bindValue(":start_date", startDateTime.toString("yyyy-MM-dd HH:mm"));
+    query.bindValue(":end_date", endDateTime.toString("yyyy-MM-dd HH:mm"));
+
+    if (query.exec())
+    {
+        tableWidget->setColumnCount(3);
+        tableWidget->setSortingEnabled(false);
+        tableWidget->setUpdatesEnabled(false);
+
+        int row = 0;
+
+        while (query.next())
+        {
+            QDate date = query.value(0).toDate();
+            QString type = query.value(1).toString();
+            float amount = query.value(2).toFloat();
+
+            QTableWidgetItem* itemDate = new QTableWidgetItem(date.toString("yyyy-MM-dd"));
+            QTableWidgetItem* itemType = new QTableWidgetItem(type);
+            QTableWidgetItem* itemAmount = new QTableWidgetItem(QString::number(amount));
+
+            tableWidget->insertRow(row);
+            tableWidget->setItem(row, 0, itemDate);
+            tableWidget->setItem(row, 1, itemType);
+            tableWidget->setItem(row, 2, itemAmount);
+
+            row++;
+        }
+
+        tableWidget->setSortingEnabled(true);
+        tableWidget->setUpdatesEnabled(true);
+        tableWidget->resizeColumnsToContents();
+        tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    }
+    else
+    {
+        qDebug() << "Query Error: " << query.lastError().text();
+    }
+}
+

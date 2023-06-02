@@ -17,6 +17,15 @@ MainWindow::MainWindow(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_TransparentForMouseEvents);
 
+    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->horizontalHeader()->setVisible(false);
+    ui->tableWidget->setShowGrid(false);
+
     m_userManager = new userManager();
     m_transactions = new Transactions(this);
 
@@ -24,12 +33,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_userManager, m_userManager->LoginSuccess, this, &MainWindow::nextWindow);
     connect(m_userManager, m_userManager->RegisterSuccess, this, &MainWindow::nextWindow);
 
+    connect(ui->filterComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handleFilterChanged(int)));
+
+
     /*connect(ui->loginButton, &QPushButton::clicked, this, &MainWindow::on_loginButton_clicked);
     connect(ui->registerButton, &QPushButton::clicked, this, &MainWindow::on_registerButton_clicked);
     connect(ui->signupButton, &QPushButton::clicked, this, &MainWindow::on_signupButton_clicked);
     connect(ui->signinButton, &QPushButton::clicked, this, &MainWindow::on_signinButton_clicked);*/
 
-    //Grupowanie przycisków
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->setExclusive(true);
 
@@ -144,6 +155,7 @@ void MainWindow::nextWindow(int index)
             ui->stackedWidget->setCurrentIndex(2);
             m_dbManager.GetAmount();
             showBalance();
+            handleFilterChanged(0);
             break;
         case 1:
             ui->stackedWidget->setCurrentIndex(0);
@@ -172,4 +184,61 @@ void MainWindow::showBalance()
     ui->income->setText(QString::number(UserSession::getInstance().getTotalIncome()));
     ui->expense->setText(QString::number(UserSession::getInstance().getTotalExpenses()));
     ui->totalBalance->setText(QString::number(UserSession::getInstance().getTotalAmount()));
+}
+
+void MainWindow::handleFilterChanged(int index)
+{
+    QString filterValue = ui->filterComboBox->currentText();
+
+    if (filterValue == "This day")
+    {
+        QDate currentDate = QDate::currentDate();
+        QTime startTime(0, 0);
+        QTime endTime(23, 59);
+
+        QDateTime startDateTime(currentDate, startTime);
+        QDateTime endDateTime(currentDate, endTime);
+
+        m_dbManager.FetchAllData(ui->tableWidget, startDateTime, endDateTime);
+    }
+
+    else if (filterValue == "This week")
+    {
+        QDate currentDate = QDate::currentDate();
+        QDate startDate = currentDate.addDays(-6);
+        QTime startTime(0, 0);
+        QTime endTime(23, 59);
+
+        QDateTime startDateTime(startDate, startTime);
+        QDateTime endDateTime(currentDate, endTime);
+
+        m_dbManager.FetchAllData(ui->tableWidget, startDateTime, endDateTime);
+    }
+
+    else if (filterValue == "This month")
+    {
+        QDate currentDate = QDate::currentDate();
+        QDate startDate = currentDate.addDays(-30);
+        QTime startTime(0, 0);
+        QTime endTime(23, 59);
+
+        QDateTime startDateTime(startDate, startTime);
+        QDateTime endDateTime(currentDate, endTime);
+
+        m_dbManager.FetchAllData(ui->tableWidget, startDateTime, endDateTime);
+    }
+
+    else if (filterValue == "This year")
+    {
+        QDate currentDate = QDate::currentDate();
+        QDate startDate = currentDate.addDays(-365);
+        QTime startTime(0, 0);
+        QTime endTime(23, 59);
+
+        QDateTime startDateTime(startDate, startTime);
+        QDateTime endDateTime(currentDate, endTime);
+
+        m_dbManager.FetchAllData(ui->tableWidget, startDateTime, endDateTime);
+    }
+
 }

@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QCryptographicHash>
 #include <QDateTime>
+#include <QTableWidget>
+#include <QHeaderView>
 
 #include "databasereader.h"
 #include "usersession.h"
@@ -26,6 +28,7 @@ public:
     bool nextQuery(QString username, QString password, int Index);
     void GetAmount();
     void GetTotalAmount();
+    void FetchAllData(QTableWidget* tableWidget, const QDateTime& startDateTime, const QDateTime& endDateTime);
 
 private:
     QSqlDatabase db;

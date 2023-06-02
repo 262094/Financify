@@ -56,7 +56,7 @@ border-radius:40px;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="loginPage">
      <widget class="QWidget" name="mainWidget" native="true">
@@ -1023,6 +1023,9 @@ border-bottom-left-radius:40px;
 }</string>
       </property>
       <widget class="QPushButton" name="settingsButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -1032,7 +1035,7 @@ border-bottom-left-radius:40px;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QWidget#settingsButton{
+        <string notr="true">/*QWidget#settingsButton{
 	image: url(:/new/prefix1/icons/settings.svg);
 }
 QWidget#settingsButton:checked{
@@ -1261,7 +1264,7 @@ border-bottom-right-radius:40px;
          <rect>
           <x>105</x>
           <y>0</y>
-          <width>91</width>
+          <width>121</width>
           <height>41</height>
          </rect>
         </property>
@@ -1279,10 +1282,10 @@ border-bottom-right-radius:40px;
 </string>
         </property>
         <property name="text">
-         <string>activity</string>
+         <string>breakdown</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="chartType">
+       <widget class="QComboBox" name="filterComboBox">
         <property name="geometry">
          <rect>
           <x>310</x>
@@ -1299,20 +1302,25 @@ border-bottom-right-radius:40px;
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QComboBox#chartType {
+         <string notr="true">QComboBox#filterComboBox {
 background-color: transparent;
 border: none;
 outline: none;
 color: rgb(52, 52, 52);
 }
-QComboBox#chartType:drop-down {
+QComboBox#filterComboBox:drop-down {
 background-color: transparent;
 border: none;
 color: rgb(52, 52, 52);
 outline: none;
 }
-QComboBox#chartType:down-arrow {
+QComboBox#filterComboBox:down-arrow {
 image: url(:/new/prefix1/icons/chevron-down_black.svg);
+}
+
+QComboBox#filterComboBox::item:selected { 
+background-color: #e1e1e1; 
+border: none;
 }</string>
         </property>
         <item>
@@ -1335,6 +1343,38 @@ image: url(:/new/prefix1/icons/chevron-down_black.svg);
           <string>This year</string>
          </property>
         </item>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>41</y>
+          <width>431</width>
+          <height>301</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Poppins Medium</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {
+	background-color: rgb(31, 31, 31);
+	color: #fff;
+}
+QTableWidget::item {
+	padding: 5px;
+}
+QTableWidget::item:selected {
+	background-color: rgb(195, 195, 195);
+}
+QHeaderView::section {
+	background-color: rgb(195, 195, 195);
+	padding: 5px;
+}</string>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="widget_2" native="true">

@@ -27,4 +27,5 @@ void Transactions::AddTransaction(float amount, QDateTime date, QString type)
 
     m_dbManager.GetTotalAmount();
     m_mainWindow->showBalance();
+    m_mainWindow->handleFilterChanged(0);
 }

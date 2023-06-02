@@ -43,6 +43,7 @@ private:
 
 public slots:
     void nextWindow(int);
+    void handleFilterChanged(int index);
 
 private slots:
     void on_loginButton_clicked();
