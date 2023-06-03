@@ -1,11 +1,22 @@
-#include <QCryptographicHash>
 #include "databasemanager.h"
+
+DatabaseManager& DatabaseManager::getInstance()
+{
+    static DatabaseManager instance;
+    return instance;
+}
 
 DatabaseManager::DatabaseManager()
 {
     m_databaseReader = new DatabaseReader();
 
-    if (m_databaseReader->readLoginData("db_login.txt"))
+    if (QSqlDatabase::contains("financify"))
+    {
+        QSqlDatabase::database("financify").close();
+        QSqlDatabase::removeDatabase("financify");
+    }
+
+    if (m_databaseReader->readLoginData("db_login.ini"))
     {
         db = QSqlDatabase::addDatabase("QMYSQL", "financify");
         db.setHostName(m_databaseReader->hostname);
@@ -21,8 +32,7 @@ DatabaseManager::DatabaseManager()
 
 DatabaseManager::~DatabaseManager()
 {
-    QSqlDatabase::database("financify").close();
-    QSqlDatabase::removeDatabase("financify");
+
 }
 
 bool DatabaseManager::executeQuery(QString qry)
@@ -43,17 +53,25 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
     QSqlQuery query(db);
     QString query_prepare;
 
+    int user_id = 0;
+
     switch(index)
     {
         case 0:
             query_prepare = QString("SELECT * FROM users WHERE username = '%1' AND password = '%2'").arg(username, password); //LOGIN
             query.prepare(query_prepare);
             query.exec();
-            if(!query.next())
-                return false;
-            return true;
 
-            break;
+            while(query.next())
+            {
+                user_id = query.value(0).toInt();
+                UserSession& userSession = UserSession::getInstance();
+                userSession.setUserId(user_id);
+                return true;
+            }
+
+        break;
+
         case 1:
             query_prepare = QString("SELECT * FROM users WHERE username= '%1'").arg(username); //REGISTER
             query.prepare(query_prepare);
@@ -67,8 +85,212 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
             }
             return true;
 
-            break;
+        break;
     }
 
     return 0;
 }
+
+void DatabaseManager::GetAmount()
+{
+    QSqlQuery query(db);
+    QString type = "Income";
+    QString type1 = "Expense";
+
+    UserSession& userSession = UserSession::getInstance();
+
+    QDateTime currentDate = QDateTime::currentDateTime();
+
+    query.prepare("SELECT * FROM transactions WHERE user_id = :user_id AND type = :type"); //GETTING Income
+    query.bindValue(":user_id", userSession.getUserId());
+    query.bindValue(":type", type);
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            QDateTime transactionDate = query.value(2).toDateTime();
+            if (transactionDate.date() == currentDate.date())
+            {
+                UserSession::getInstance().addIncome(query.value(4).toFloat());
+            }
+        }
+    }
+    else
+            qDebug() << "Query Error: " << query.lastError().text();
+
+    query.prepare("SELECT * FROM transactions WHERE user_id = :user_id AND type = :type");
+    query.bindValue(":user_id", userSession.getUserId());
+    query.bindValue(":type", type1);
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            QDateTime transactionDate = query.value(2).toDateTime();
+
+            if (transactionDate.date() == currentDate.date())
+            {
+                UserSession::getInstance().addExpense(query.value(4).toFloat());
+            }
+        }
+    }
+    else
+        qDebug() << "Query Error: " << query.lastError().text();
+
+    GetTotalAmount();
+}
+
+void DatabaseManager::GetTotalAmount()
+{
+    UserSession& userSession = UserSession::getInstance();
+    int userId = userSession.getUserId();
+
+    QSqlQuery query(db);
+    QString type = "Income";
+    QString type1 = "Expense";
+
+    float totalIncome = 0;
+    float totalExpense = 0;
+
+    query.prepare("SELECT SUM(amount) FROM transactions WHERE user_id = :user_id AND type = :type");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":type", type);
+    if (query.exec() && query.next())
+    {
+        totalIncome = query.value(0).toFloat();
+
+    }
+    else
+    {
+        qDebug() << "Query Error: " << query.lastError().text();
+        return;
+    }
+
+    query.prepare("SELECT SUM(amount) FROM transactions WHERE user_id = :user_id AND type = :type");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":type", type1);
+    if (query.exec() && query.next())
+    {
+        totalExpense = query.value(0).toFloat();
+    }
+    else
+    {
+        qDebug() << "Query Error: " << query.lastError().text();
+        return;
+    }
+
+    float totalBudget = totalIncome - totalExpense;
+    userSession.setTotalAmount(totalBudget);
+}
+
+void DatabaseManager::FetchTransactionsData(QTableWidget* tableWidget, const QDateTime& startDateTime, const QDateTime& endDateTime)
+{
+    tableWidget->clear();
+    tableWidget->clearContents();
+    tableWidget->setRowCount(0);
+
+    QSqlQuery query(db);
+    query.prepare("SELECT date, type, amount FROM transactions WHERE user_id = :user_id AND date BETWEEN :start_date AND :end_date");
+    query.bindValue(":user_id", UserSession::getInstance().getUserId());
+    query.bindValue(":start_date", startDateTime.toString("yyyy-MM-dd HH:mm"));
+    query.bindValue(":end_date", endDateTime.toString("yyyy-MM-dd HH:mm"));
+
+    if (query.exec())
+    {
+        tableWidget->setColumnCount(3);
+        tableWidget->setSortingEnabled(false);
+        tableWidget->setUpdatesEnabled(false);
+
+        int row = 0;
+
+        while (query.next())
+        {
+            QDate date = query.value(0).toDate();
+            QString type = query.value(1).toString();
+            float amount = query.value(2).toFloat();
+
+            QTableWidgetItem* itemDate = new QTableWidgetItem(date.toString("yyyy-MM-dd"));
+            QTableWidgetItem* itemType = new QTableWidgetItem(type);
+            QTableWidgetItem* itemAmount = new QTableWidgetItem(QString("$")+QString::number(amount));
+
+            tableWidget->insertRow(row);
+            tableWidget->setItem(row, 0, itemDate);
+            tableWidget->setItem(row, 1, itemType);
+            tableWidget->setItem(row, 2, itemAmount);
+
+            row++;
+        }
+
+        tableWidget->setSortingEnabled(true);
+        tableWidget->setUpdatesEnabled(true);
+        tableWidget->resizeColumnsToContents();
+        tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    }
+    else
+    {
+        qDebug() << "Query Error: " << query.lastError().text();
+    }
+}
+
+bool DatabaseManager::CheckGoalsTable()
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT COUNT(*) FROM goals");
+
+    if (query.exec() && query.next())
+    {
+        int rowCount = query.value(0).toInt();
+        if (rowCount > 0)
+            return true;
+        else
+            return false;
+    }
+
+    else
+        qDebug() << "Query Error: " << query.lastError().text();
+
+    return 0;
+
+}
+
+void DatabaseManager::FetchGoalData(QLabel* goalNameLabel, QLabel* goalAmountLabel, QLabel* goalComplete, QProgressBar* progressBar)
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT name, amount FROM goals WHERE user_id = :user_id");
+    query.bindValue(":user_id", UserSession::getInstance().getUserId());
+
+    QString name;
+    float amount;
+
+    if (query.exec())
+    {
+        while (query.next())
+        {
+            name = query.value(0).toString();
+            amount = query.value(1).toFloat();
+        }
+    }
+
+    else
+    {
+        qDebug() << "Query Error: " << query.lastError().text();
+    }
+
+    if(CheckGoalsTable())
+    {
+        goalNameLabel->setText(name);
+        goalAmountLabel->setText("$" + QString::number(UserSession::getInstance().getTotalAmount()));
+
+        int value = UserSession::getInstance().getTotalAmount()/amount * 100;
+        if (value >= 100)
+        {
+            goalComplete->setText("Complete");
+            value = 100;
+        }
+        else
+            goalComplete->setText("");
+
+        progressBar->setValue(value);
+    }
+
+}
+

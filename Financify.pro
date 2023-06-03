@@ -13,16 +13,28 @@ SOURCES += \
     databasereader.cpp \
     main.cpp \
     mainwindow.cpp \
-    usermanager.cpp
+    transactions.cpp \
+    transactionsWindow.cpp \
+    goals.cpp \
+    goalswindow.cpp \
+    usermanager.cpp \
+    usersession.cpp
 
 HEADERS += \
     databasemanager.h \
     databasereader.h \
     mainwindow.h \
-    usermanager.h
+    transactions.h \
+    transactionsWindow.h \
+    goals.h \
+    goalswindow.h \
+    usermanager.h \
+    usersession.h
 
 FORMS += \
-    mainwindow.ui
+    goalswindow.ui \
+    mainwindow.ui \
+    transactionsWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

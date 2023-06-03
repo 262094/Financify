@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>goalsWindow</class>
+ <widget class="QDialog" name="goalsWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>350</width>
+     <height>480</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#widget{
+background-color: rgb(255,255,255);
+border-radius:40px;
+border: 2px solid black;
+}</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>50</y>
+      <width>171</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Poppins Medium</family>
+      <pointsize>18</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Add new goal</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="submitButton">
+    <property name="geometry">
+     <rect>
+      <x>45</x>
+      <y>390</y>
+      <width>240</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Poppins</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#submitButton{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+	color: rgb(255,255,255);
+}
+
+QWidget#submitButton:hover{
+	background-color: rgb(195, 195, 195);
+	border-radius:20px;
+	color: rgb(255,255,255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Submit</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="amontWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>190</y>
+      <width>300</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#amontWidget{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+}</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="amountEdit">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>195</y>
+      <width>220</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Poppins</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QDoubleSpinBox#amountEdit {
+background-color: transparent;
+border: none;
+outline: none;
+color: rgb(255, 255, 255);
+}
+QDoubleSpinBox#amountEdit:drop-down {
+background-color: transparent;
+border: none;
+color: rgb(255, 255, 255);
+outline: none;
+}
+QDoubleSpinBox#amountEdit:down-arrow {
+	image: url(:/new/prefix1/icons/chevron-down.svg);
+}
+
+QDoubleSpinBox#amountEdit:up-arrow {
+	image: url(:/new/prefix1/icons/chevron-up.svg);
+}</string>
+    </property>
+    <property name="decimals">
+     <number>2</number>
+    </property>
+    <property name="maximum">
+     <double>9999999999.989999771118164</double>
+    </property>
+    <property name="stepType">
+     <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="nameWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>300</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#nameWidget{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+}</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="nameEdit">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>285</y>
+      <width>220</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Poppins</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit#nameEdit{
+background-color: transparent;
+border: none;
+outline: none;
+	color: rgb(255, 255, 255);
+}</string>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Title</string>
+    </property>
+   </widget>
+   <zorder>nameWidget</zorder>
+   <zorder>amontWidget</zorder>
+   <zorder>submitButton</zorder>
+   <zorder>label</zorder>
+   <zorder>amountEdit</zorder>
+   <zorder>nameEdit</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
