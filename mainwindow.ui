@@ -1658,8 +1658,8 @@ image:url(:/new/prefix1/icons/close_pressed.png);
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>290</y>
-          <width>91</width>
+          <y>300</y>
+          <width>101</width>
           <height>41</height>
          </rect>
         </property>
@@ -1676,7 +1676,7 @@ image:url(:/new/prefix1/icons/close_pressed.png);
          <string notr="true">color: #fff;</string>
         </property>
         <property name="text">
-         <string>Goal</string>
+         <string>Your goal</string>
         </property>
        </widget>
        <widget class="QPushButton" name="addFundsButton">
@@ -1851,7 +1851,7 @@ text-align: center;
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>390</y>
+          <y>410</y>
           <width>131</width>
           <height>21</height>
          </rect>

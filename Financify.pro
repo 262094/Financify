@@ -45,3 +45,5 @@ STATECHARTS +=
 
 RESOURCES += \
     icons.qrc
+
+
