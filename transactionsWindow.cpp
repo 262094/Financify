@@ -44,3 +44,9 @@ void transactionsWindow::show()
         QDialog::show();
     }
 }
+
+void transactionsWindow::on_closeButton_4_clicked() //zamkniecie ikony dodawania transakcji
+{
+    this -> close();
+}
+

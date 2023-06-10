@@ -1,5 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDesktopServices>
+#include <QUrl>
+
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -257,5 +261,34 @@ void MainWindow::on_addGoalsButton_clicked()
 void MainWindow::showGoal()
 {
     m_dbManager.FetchGoalData(ui->goalName, ui->goalAmount, ui->goalComplete, ui->goalBar);
+}
+
+
+void MainWindow::on_signinButton_2_clicked()  //przeniesienie na strone o stronie
+{
+     QDesktopServices::openUrl(QUrl("http://localhost/financify/financify.php"));
+}
+
+void MainWindow::on_startButton_clicked()
+{
+     ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_chartButton_clicked()
+{
+     ui->stackedWidget->setCurrentIndex(3);
+}
+
+
+void MainWindow::on_closeButton_8_clicked()
+{
+     this -> close();
+}
+
+
+void MainWindow::on_homeButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
 }
 

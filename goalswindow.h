@@ -25,6 +25,8 @@ public:
 private slots:
     void on_submitButton_clicked();
 
+    void on_closeButton_5_clicked();
+
 private:
     Ui::goalsWindow *ui;
 
