@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMouseEvent>
 #include <QButtonGroup>
+#include <QTimer>
 
 #include "usermanager.h"
 #include "databasemanager.h"
@@ -68,5 +69,16 @@ private slots:
     void on_addFundsButton_clicked();
     void on_closeButton_clicked();
     void on_addGoalsButton_clicked();
+    void on_signinButton_2_clicked();
+    void on_startButton_clicked();
+    void on_chartButton_clicked();
+    void on_closeButton_8_clicked();
+    void on_homeButton_3_clicked();
+    void on_closeButton_10_clicked();
+    void on_accountButton_clicked();
+    void on_accountButton_3_clicked();
+    void on_homeButton_4_clicked();
+    void on_chartButton_4_clicked();
+    void on_logout_button_clicked();
 };
 #endif // MAINWINDOW_H

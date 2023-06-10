@@ -23,5 +23,6 @@
         <file>icons/chevron-down.svg</file>
         <file>icons/chevron-up.svg</file>
         <file>icons/chevron-down_black.svg</file>
+        <file>icons/graph1.png</file>
     </qresource>
 </RCC>

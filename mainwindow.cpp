@@ -1,5 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDesktopServices>
+#include <QUrl>
+
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -257,5 +261,68 @@ void MainWindow::on_addGoalsButton_clicked()
 void MainWindow::showGoal()
 {
     m_dbManager.FetchGoalData(ui->goalName, ui->goalAmount, ui->goalComplete, ui->goalBar);
+}
+
+//add new file
+void MainWindow::on_signinButton_2_clicked()  //przeniesienie na strone o stronie
+{
+     QDesktopServices::openUrl(QUrl("http://localhost/financify/financify.php"));
+}
+
+//start_page
+void MainWindow::on_startButton_clicked()
+{
+     ui->stackedWidget->setCurrentIndex(0);
+}
+//chart_page
+void MainWindow::on_chartButton_clicked()
+{
+     ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_closeButton_8_clicked()
+{
+     this -> close();
+}
+//from charts_page to home_page
+void MainWindow::on_homeButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+//user_page
+void MainWindow::on_closeButton_10_clicked()
+{
+    this -> close();
+}
+
+void MainWindow::on_accountButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+//from charts_page to user_page
+void MainWindow::on_accountButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+//from user_page to home_page
+void MainWindow::on_homeButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+//from user_page to chart_page
+void MainWindow::on_chartButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+//from user_page to login_page
+void MainWindow::on_logout_button_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    QMessageBox::about(this, "Information", "Signed out successfully!");
 }
 

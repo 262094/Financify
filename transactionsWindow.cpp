@@ -45,7 +45,7 @@ void transactionsWindow::show()
     }
 }
 
-void transactionsWindow::on_closeButton_4_clicked()
+void transactionsWindow::on_closeButton_4_clicked() //zamkniecie ikony dodawania transakcji
 {
     this -> close();
 }

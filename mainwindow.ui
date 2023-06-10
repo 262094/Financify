@@ -56,7 +56,7 @@ border-radius:40px;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="loginPage">
      <widget class="QWidget" name="mainWidget" native="true">
@@ -581,6 +581,61 @@ QWidget#signinButton:hover{
          <bool>true</bool>
         </property>
        </widget>
+       <widget class="QPushButton" name="signinButton_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Poppins</family>
+          <pointsize>12</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget#signinButton_2{
+	background-color: rgb(255, 255, 255);
+	border-radius:20px;
+	color: rgb(35,35,35);
+	image: url(:/new/prefix1/icons/info.svg);
+}
+
+QWidget#signinButton_2:hover{
+	background-color: rgb(170, 170, 170);
+	border-radius:20px;
+	color: rgb(35,35,35);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>10</y>
+          <width>231</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255,255,255);
+font: 10pt &quot;Segoe UI&quot;;</string>
+        </property>
+        <property name="text">
+         <string>More information
+about the application</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QLabel" name="mainLabel_8">
        <property name="geometry">
@@ -1009,7 +1064,7 @@ outline: none;
       </property>
       <property name="geometry">
        <rect>
-        <x>-2</x>
+        <x>0</x>
         <y>0</y>
         <width>60</width>
         <height>600</height>
@@ -1912,6 +1967,615 @@ text-align: center;
        <zorder>goalAmount</zorder>
        <zorder>goalComplete</zorder>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="charts">
+     <widget class="QWidget" name="leftMenuWidget_3" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>61</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget#leftMenuWidget_3{
+background-color: rgb(31,31,31);
+border-top-left-radius:40px;
+border-bottom-left-radius:40px;
+}</string>
+      </property>
+      <widget class="QPushButton" name="accountButton_3">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>130</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#accountButton_3{
+image: url(:/new/prefix1/icons//user.svg);
+}
+QWidget#accountButton_3:checked{
+border: none;
+outline: none;
+	image: url(:/new/prefix1/icons/user_clicked.svg);
+}
+QWidget#accountButton_3:pressed{
+border: none;
+outline: none;
+	image: url(:/new/prefix1/icons/user_clicked.svg);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="chartButton_3">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>200</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#chartButton_3{
+	image: url(:/new/prefix1/icons/pie-chart.svg);
+}
+QWidget#chartButton_3:checked{
+border: none;
+outline: none;
+image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
+}
+QWidget#chartButton_3:pressed{
+border: none;
+outline: none;
+image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="homeButton_3">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>60</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#homeButton_3{
+image: url(:/new/prefix1/icons/home.svg);
+}
+QWidget#homeButton_3:checked{
+border: none;
+outline: none;
+	image: url(:/new/prefix1/icons/home_clicked.svg);
+}
+QWidget#homeButton_3:pressed{
+border: none;
+outline: none;
+	image: url(:/new/prefix1/icons/home_clicked.svg);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="mainMenuWidget_3" native="true">
+      <property name="geometry">
+       <rect>
+        <x>59</x>
+        <y>0</y>
+        <width>841</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Poppins</family>
+        <pointsize>12</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget#mainMenuWidget_3{
+background-color: rgb(255, 255, 255);
+border-top-right-radius:40px;
+border-bottom-right-radius:40px;
+}
+</string>
+      </property>
+      <widget class="QWidget" name="widget_7" native="true">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>0</y>
+         <width>291</width>
+         <height>601</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#widget_7{
+	background-color: rgb(31, 31, 31);
+border-top-right-radius:40px;
+border-bottom-right-radius:40px;
+}
+</string>
+       </property>
+       <widget class="QPushButton" name="closeButton_8">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>30</y>
+          <width>28</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget#closeButton_8{
+	image: url(:/new/prefix1/icons/close_2.png);
+}
+
+QWidget#closeButton_8:hover{
+	image:url(:/new/prefix1/icons/close_pressed.png);
+}
+
+QWidget#closeButton_8:pressed{
+border: none;
+outline: none;
+image:url(:/new/prefix1/icons/close_pressed.png);
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>90</y>
+          <width>231</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 20pt &quot;Segoe UI&quot;;
+color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>Your finance charts</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="userPage">
+     <widget class="QWidget" name="leftMenuWidget_4" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>61</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget#leftMenuWidget_4{
+background-color: rgb(31,31,31);
+border-top-left-radius:40px;
+border-bottom-left-radius:40px;
+}</string>
+      </property>
+      <widget class="QPushButton" name="accountButton_4">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>130</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#accountButton_4{
+image: url(:/new/prefix1/icons//user.svg);
+}
+QWidget#accountButton_4:checked{
+border: none;
+outline: none;
+	image: url(:/new/prefix1/icons/user_clicked.svg);
+}
+QWidget#accountButton_4:pressed{
+border: none;
+outline: none;
+	image: url(:/new/prefix1/icons/user_clicked.svg);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="chartButton_4">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>200</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#chartButton_4{
+	image: url(:/new/prefix1/icons/pie-chart.svg);
+}
+QWidget#chartButton_4:checked{
+border: none;
+outline: none;
+image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
+}
+QWidget#chartButton_4:pressed{
+border: none;
+outline: none;
+image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="homeButton_4">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>60</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#homeButton_4{
+image: url(:/new/prefix1/icons/home.svg);
+}
+QWidget#homeButton_4:checked{
+border: none;
+outline: none;
+	image: url(:/new/prefix1/icons/home_clicked.svg);
+}
+QWidget#homeButton_4:pressed{
+border: none;
+outline: none;
+	image: url(:/new/prefix1/icons/home_clicked.svg);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="mainMenuWidget_4" native="true">
+      <property name="geometry">
+       <rect>
+        <x>59</x>
+        <y>0</y>
+        <width>841</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Poppins</family>
+        <pointsize>12</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget#mainMenuWidget_4{
+background-color: rgb(255, 255, 255);
+border-top-right-radius:40px;
+border-bottom-right-radius:40px;
+}
+</string>
+      </property>
+      <widget class="QWidget" name="widget_8" native="true">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>0</y>
+         <width>291</width>
+         <height>601</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget#widget_8{
+	background-color: rgb(31, 31, 31);
+border-top-right-radius:40px;
+border-bottom-right-radius:40px;
+}
+</string>
+       </property>
+       <widget class="QWidget" name="widget_9" native="true">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>291</width>
+          <height>601</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget#widget_7{
+	background-color: rgb(31, 31, 31);
+border-top-right-radius:40px;
+border-bottom-right-radius:40px;
+}
+</string>
+        </property>
+        <widget class="QPushButton" name="closeButton_10">
+         <property name="geometry">
+          <rect>
+           <x>220</x>
+           <y>30</y>
+           <width>28</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget#closeButton_10{
+	image: url(:/new/prefix1/icons/close_2.png);
+}
+
+QWidget#closeButton_10:hover{
+	image:url(:/new/prefix1/icons/close_pressed.png);
+}
+
+QWidget#closeButton_10:pressed{
+border: none;
+outline: none;
+image:url(:/new/prefix1/icons/close_pressed.png);
+}
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>80</y>
+           <width>161</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 20pt &quot;Segoe UI&quot;;
+color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>Hello user:</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="logout_button">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>520</y>
+           <width>240</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Poppins</family>
+           <pointsize>12</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget#logout_button{
+	background-color: rgb(255, 255, 255);
+	border-radius:20px;
+	color: rgb(35,35,35);
+}
+
+QWidget#logout_button:hover{
+	background-color: rgb(170, 170, 170);
+	border-radius:20px;
+	color: rgb(35,35,35);
+}</string>
+         </property>
+         <property name="text">
+          <string>Logout</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="hello_page">
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>-30</y>
+        <width>511</width>
+        <height>631</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/new/prefix1/icons/graph1.png);</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startButton">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>550</y>
+        <width>281</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Poppins</family>
+        <pointsize>12</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget#startButton{
+	background-color: rgb(90, 90, 90);
+	border-radius:20px;
+	color: rgb(255,255,255);
+}
+
+QWidget#startButton:hover{
+	background-color: rgb(195, 195, 195);
+	border-radius:20px;
+	color: rgb(255,255,255);
+}</string>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
      </widget>
     </widget>
    </widget>
