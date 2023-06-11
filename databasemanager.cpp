@@ -52,7 +52,6 @@ bool DatabaseManager::nextQuery(QString username, QString password, int index)
 {
     QSqlQuery query(db);
     QString query_prepare;
-
     int user_id = 0;
 
     switch(index)

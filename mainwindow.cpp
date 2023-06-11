@@ -4,7 +4,6 @@
 #include <QUrl>
 
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -52,6 +51,84 @@ MainWindow::MainWindow(QWidget *parent)
     buttonGroup->addButton(ui->settingsButton);
     buttonGroup->addButton(ui->chartButton);
     buttonGroup->addButton(ui->accountButton);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    QPieSeries *series = new QPieSeries();
+
+    series -> append("Transport", 800);
+    series -> append("Bills", 60);
+    series -> append("Food", 20);
+    series -> append("Education", 20);
+    series -> append("Health", 60);
+
+    QChart *chart = new QChart();
+    chart -> addSeries(series);
+    chart -> setTitle("Chart of your expenses");
+
+    QFont titleFont;
+    titleFont.setPointSize(25); // Ustawienie rozmiaru na 20
+    chart->setTitleFont(titleFont);
+
+    QChartView *chartview = new QChartView(chart);
+    chartview -> setParent (ui->horizontalFrame);
+    series->setLabelsVisible(true);
+
+    // Ustawienie wyświetlania etykiet procentowych dla każdej części wykresu
+    for (QPieSlice *slice : series->slices()) {
+        QString label = QString("%1%").arg(100.0 * slice->percentage(), 0, 'f', 1);
+        slice->setLabel(QString("%1\n(%2)").arg(slice->label()).arg(label));
+    }
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setParent(ui->horizontalFrame);
+
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    chartView->setMinimumSize(600, 320); // Minimalny rozmiar wykresu
+
+    ui->horizontalFrame->layout()->addWidget(chartView); // Dodanie wykresu do układu
+
+    // Dodatkowo, jeśli korzystasz z okna głównego, możesz ustawić odpowiednią właściwość
+    // dla przystosowania wykresu do rozmiaru okna głównego
+    chartView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    QPieSeries *series2 = new QPieSeries();
+
+    series2 -> append("Transport", 800);
+    series2 -> append("Bills", 60);
+    series2 -> append("Food", 20);
+
+    QChart *chart2 = new QChart();
+    chart2 -> addSeries(series2);
+    chart2 -> setTitle("Chart of your incomes");
+
+    QFont titleFont2;
+    titleFont2.setPointSize(25); // Ustawienie rozmiaru na 20
+    chart2->setTitleFont(titleFont2);
+
+    QChartView *chartview2 = new QChartView(chart2);
+    chartview2 -> setParent (ui->horizontalFrame_2);
+    series2->setLabelsVisible(true);
+
+    // Ustawienie wyświetlania etykiet procentowych dla każdej części wykresu
+    for (QPieSlice *slice : series2->slices()) {
+        QString label = QString("%1%").arg(100.0 * slice->percentage(), 0, 'f', 1);
+        slice->setLabel(QString("%1\n(%2)").arg(slice->label()).arg(label));
+    }
+
+    QChartView *chartView2 = new QChartView(chart2);
+    chartView2->setParent(ui->horizontalFrame_2);
+
+    chartView2->setRenderHint(QPainter::Antialiasing);
+    chartView2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    chartView2->setMinimumSize(600, 310); // Minimalny rozmiar wykresu
+
+    ui->horizontalFrame_2->layout()->addWidget(chartView2); // Dodanie wykresu do układu
+
+    // Dodatkowo, jeśli korzystasz z okna głównego, możesz ustawić odpowiednią właściwość
+    // dla przystosowania wykresu do rozmiaru okna głównego
+    chartView2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 MainWindow::~MainWindow()
@@ -319,10 +396,6 @@ void MainWindow::on_chartButton_4_clicked()
     ui->stackedWidget->setCurrentIndex(3);
 }
 
-//from user_page to login_page
-void MainWindow::on_logout_button_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-    QMessageBox::about(this, "Information", "Signed out successfully!");
-}
+
+
 

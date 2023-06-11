@@ -5,6 +5,9 @@
 #include <QMouseEvent>
 #include <QButtonGroup>
 #include <QTimer>
+#include <Qtcharts>
+#include <QChartView>
+#include <QPieSeries>
 
 #include "usermanager.h"
 #include "databasemanager.h"
@@ -79,6 +82,6 @@ private slots:
     void on_accountButton_3_clicked();
     void on_homeButton_4_clicked();
     void on_chartButton_4_clicked();
-    void on_logout_button_clicked();
+
 };
 #endif // MAINWINDOW_H

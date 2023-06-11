@@ -2205,8 +2205,8 @@ image:url(:/new/prefix1/icons/close_pressed.png);
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>90</y>
-          <width>231</width>
+          <y>70</y>
+          <width>241</width>
           <height>41</height>
          </rect>
         </property>
@@ -2215,10 +2215,56 @@ image:url(:/new/prefix1/icons/close_pressed.png);
 color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
-         <string>Your finance charts</string>
+         <string>Your financial charts</string>
         </property>
        </widget>
       </widget>
+      <widget class="QFrame" name="horizontalFrame">
+       <property name="geometry">
+        <rect>
+         <x>-50</x>
+         <y>-30</y>
+         <width>551</width>
+         <height>281</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>551</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>551</width>
+         <height>281</height>
+        </size>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout"/>
+      </widget>
+      <widget class="QFrame" name="horizontalFrame_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>-30</x>
+         <y>310</y>
+         <width>551</width>
+         <height>320</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>551</width>
+         <height>320</height>
+        </size>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+      </widget>
+      <zorder>horizontalFrame_2</zorder>
+      <zorder>widget_7</zorder>
+      <zorder>horizontalFrame</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="userPage">
@@ -2473,58 +2519,42 @@ image:url(:/new/prefix1/icons/close_pressed.png);
         <widget class="QLabel" name="label_3">
          <property name="geometry">
           <rect>
-           <x>80</x>
-           <y>80</y>
-           <width>161</width>
-           <height>41</height>
+           <x>10</x>
+           <y>60</y>
+           <width>281</width>
+           <height>201</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">font: 20pt &quot;Segoe UI&quot;;
+          <string notr="true">font: 18pt &quot;Segoe UI&quot;;
 color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>Hello user:</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="logout_button">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>520</y>
-           <width>240</width>
-           <height>50</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Poppins</family>
-           <pointsize>12</pointsize>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QWidget#logout_button{
-	background-color: rgb(255, 255, 255);
-	border-radius:20px;
-	color: rgb(35,35,35);
-}
-
-QWidget#logout_button:hover{
-	background-color: rgb(170, 170, 170);
-	border-radius:20px;
-	color: rgb(35,35,35);
-}</string>
-         </property>
-         <property name="text">
-          <string>Logout</string>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
+          <string>Hello user!
+Thank you for being
+with us! We hope our
+app helps your budget
+and brings you
+all the benefits!</string>
          </property>
         </widget>
        </widget>
       </widget>
+      <widget class="QGraphicsView" name="graphicsView_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>641</width>
+         <height>611</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/new/prefix1/icons/graph1.png);</string>
+       </property>
+      </widget>
+      <zorder>graphicsView_2</zorder>
+      <zorder>widget_8</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="hello_page">
@@ -2575,6 +2605,23 @@ QWidget#startButton:hover{
       </property>
       <property name="flat">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>550</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(166, 166, 166);</string>
+      </property>
+      <property name="text">
+       <string>Mateusz Berger
+Łukasz Barszczyk</string>
       </property>
      </widget>
     </widget>
