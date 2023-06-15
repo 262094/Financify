@@ -189,14 +189,14 @@ void DatabaseManager::FetchTransactionsData(QTableWidget* tableWidget, const QDa
     tableWidget->setRowCount(0);
 
     QSqlQuery query(db);
-    query.prepare("SELECT date, type, amount FROM transactions WHERE user_id = :user_id AND date BETWEEN :start_date AND :end_date");
+    query.prepare("SELECT date, type, amount, type2 FROM transactions WHERE user_id = :user_id AND date BETWEEN :start_date AND :end_date");
     query.bindValue(":user_id", UserSession::getInstance().getUserId());
     query.bindValue(":start_date", startDateTime.toString("yyyy-MM-dd HH:mm"));
     query.bindValue(":end_date", endDateTime.toString("yyyy-MM-dd HH:mm"));
 
     if (query.exec())
     {
-        tableWidget->setColumnCount(3);
+        tableWidget->setColumnCount(4);
         tableWidget->setSortingEnabled(false);
         tableWidget->setUpdatesEnabled(false);
 
@@ -207,15 +207,18 @@ void DatabaseManager::FetchTransactionsData(QTableWidget* tableWidget, const QDa
             QDate date = query.value(0).toDate();
             QString type = query.value(1).toString();
             float amount = query.value(2).toFloat();
+            QString type2 = query.value(3).toString();
 
             QTableWidgetItem* itemDate = new QTableWidgetItem(date.toString("yyyy-MM-dd"));
             QTableWidgetItem* itemType = new QTableWidgetItem(type);
             QTableWidgetItem* itemAmount = new QTableWidgetItem(QString("$")+QString::number(amount));
+            QTableWidgetItem* itemType2 = new QTableWidgetItem(type2);
 
             tableWidget->insertRow(row);
             tableWidget->setItem(row, 0, itemDate);
             tableWidget->setItem(row, 1, itemType);
             tableWidget->setItem(row, 2, itemAmount);
+            tableWidget->setItem(row, 3, itemType2);
 
             row++;
         }
@@ -252,14 +255,15 @@ bool DatabaseManager::CheckGoalsTable()
 
 }
 
-void DatabaseManager::FetchGoalData(QLabel* goalNameLabel, QLabel* goalAmountLabel, QLabel* goalComplete, QProgressBar* progressBar)
+void DatabaseManager::FetchGoalData(QLabel* goalNameLabel, QLabel* goalAmountLabel, QPushButton* completeButton, QProgressBar* progressBar)
 {
     QSqlQuery query(db);
     query.prepare("SELECT name, amount FROM goals WHERE user_id = :user_id");
     query.bindValue(":user_id", UserSession::getInstance().getUserId());
 
     QString name;
-    float amount;
+    float amount = 0.0f;
+    float totalAmount = UserSession::getInstance().getTotalAmount();
 
     if (query.exec())
     {
@@ -278,18 +282,31 @@ void DatabaseManager::FetchGoalData(QLabel* goalNameLabel, QLabel* goalAmountLab
     if(CheckGoalsTable())
     {
         goalNameLabel->setText(name);
-        goalAmountLabel->setText("$" + QString::number(UserSession::getInstance().getTotalAmount()));
 
-        int value = UserSession::getInstance().getTotalAmount()/amount * 100;
+        if (amount <= totalAmount)
+        {
+            goalAmountLabel->setText("$" + QString::number(amount));
+        }
+        else
+            goalAmountLabel->setText("$" + QString::number(totalAmount));
+
+        int value = totalAmount/amount * 100;
         if (value >= 100)
         {
-            goalComplete->setText("Complete");
+            completeButton->show();
             value = 100;
         }
         else
-            goalComplete->setText("");
+            completeButton->hide();
 
         progressBar->setValue(value);
+    }
+    else
+    {
+        goalNameLabel->setText("");
+        goalAmountLabel->setText("");
+        progressBar->setValue(0);
+        completeButton->hide();
     }
 
 }

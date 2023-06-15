@@ -34,7 +34,7 @@ void transactionsWindow::mouseMoveEvent(QMouseEvent *event)
 
 void transactionsWindow::on_submitButton_clicked()
 {
-    m_transactions->AddTransaction(ui->amountEdit->value(), ui->dateEdit->dateTime(), ui->typeEdit->currentText());
+    m_transactions->AddTransaction(ui->amountEdit->value(), ui->dateEdit->dateTime(), ui->typeEdit->currentText(), ui->typeEdit_2->currentText());
 }
 
 void transactionsWindow::show()

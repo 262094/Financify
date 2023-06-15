@@ -45,7 +45,7 @@ void goalsWindow::on_submitButton_clicked()
 }
 
 
-void goalsWindow::on_closeButton_5_clicked() //zamkniecie ikony dodawana celu
+void goalsWindow::on_closeButton_5_clicked()
 {
     this -> close();
 }

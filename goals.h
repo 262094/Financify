@@ -19,6 +19,7 @@ public:
     explicit Goals(MainWindow* mainWindow, QWidget* parent = nullptr);
 
     void AddGoal(float amount, QString name);
+    void DeleteGoalData();
 
 private:
     DatabaseManager& m_dbManager;

@@ -13,6 +13,7 @@
 #include <QHeaderView>
 #include <QLabel>
 #include <QProgressBar>
+#include <QPushButton>
 
 #include "databasereader.h"
 #include "usersession.h"
@@ -32,7 +33,7 @@ public:
     void GetTotalAmount();
     void FetchTransactionsData(QTableWidget* tableWidget, const QDateTime& startDateTime, const QDateTime& endDateTime);
     bool CheckGoalsTable();
-    void FetchGoalData(QLabel* goalNameLabel, QLabel* goalAmountLabel, QLabel* goalComplete, QProgressBar* progressBar);
+    void FetchGoalData(QLabel* goalNameLabel, QLabel* goalAmountLabel, QPushButton* completeButton, QProgressBar* progressBar);
 
 private:
     QSqlDatabase db;

@@ -26,6 +26,18 @@ void Goals::AddGoal(float amount, QString name)
     m_mainWindow->showGoal();
 }
 
+void Goals::DeleteGoalData()
+{
+    UserSession& userSession = UserSession::getInstance();
+    int userId = userSession.getUserId();
+
+    QString query_prepare = QString("DELETE FROM goals WHERE user_id = '%1'")
+                                    .arg(QString::number(userId));
+
+    if (!m_dbManager.executeQuery(query_prepare))
+        QMessageBox::about(m_mainWindow, "error", "Something went wrong. Try one more time.");
+}
+
 
 
 

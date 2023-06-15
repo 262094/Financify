@@ -1135,16 +1135,8 @@ outline: none;
        <property name="styleSheet">
         <string notr="true">QWidget#accountButton{
 image: url(:/new/prefix1/icons//user.svg);
-}
-QWidget#accountButton:checked{
 border: none;
 outline: none;
-	image: url(:/new/prefix1/icons/user_clicked.svg);
-}
-QWidget#accountButton:pressed{
-border: none;
-outline: none;
-	image: url(:/new/prefix1/icons/user_clicked.svg);
 }</string>
        </property>
        <property name="text">
@@ -1157,7 +1149,7 @@ outline: none;
         </size>
        </property>
        <property name="checkable">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="flat">
         <bool>true</bool>
@@ -1178,17 +1170,10 @@ outline: none;
        <property name="styleSheet">
         <string notr="true">QWidget#chartButton{
 	image: url(:/new/prefix1/icons/pie-chart.svg);
-}
-QWidget#chartButton:checked{
 border: none;
 outline: none;
-image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
 }
-QWidget#chartButton:pressed{
-border: none;
-outline: none;
-image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
-}</string>
+</string>
        </property>
        <property name="text">
         <string/>
@@ -1200,7 +1185,7 @@ image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
         </size>
        </property>
        <property name="checkable">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="default">
         <bool>false</bool>
@@ -1220,18 +1205,11 @@ image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
        </property>
        <property name="styleSheet">
         <string notr="true">QWidget#homeButton{
-image: url(:/new/prefix1/icons/home.svg);
-}
-QWidget#homeButton:checked{
+image: url(:/new/prefix1/icons/home_clicked.svg);
 border: none;
 outline: none;
-	image: url(:/new/prefix1/icons/home_clicked.svg);
 }
-QWidget#homeButton:pressed{
-border: none;
-outline: none;
-	image: url(:/new/prefix1/icons/home_clicked.svg);
-}</string>
+</string>
        </property>
        <property name="text">
         <string/>
@@ -1243,10 +1221,10 @@ outline: none;
         </size>
        </property>
        <property name="checkable">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="checked">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="default">
         <bool>false</bool>
@@ -1658,9 +1636,9 @@ background-color:transparent;</string>
        <property name="geometry">
         <rect>
          <x>550</x>
-         <y>0</y>
+         <y>-1</y>
          <width>291</width>
-         <height>601</height>
+         <height>602</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1755,12 +1733,16 @@ image:url(:/new/prefix1/icons/close_pressed.png);
 	background-color: rgb(255, 255, 255);
 	border-radius:20px;
 	color: rgb(35,35,35);
+border: none;
+outline: none;
 }
 
 QWidget#addFundsButton:hover{
 	background-color: rgb(170, 170, 170);
 	border-radius:20px;
 	color: rgb(35,35,35);
+border: none;
+outline: none;
 }</string>
         </property>
         <property name="text">
@@ -1820,6 +1802,8 @@ QWidget#addFundsButton:hover{
          <string notr="true">QWidget#addGoalsButton{
 	background-color: rgb(255, 255, 255);
 	border-radius:20px;
+border: none;
+outline: none;
 	color: rgb(35,35,35);
 }
 
@@ -1827,6 +1811,8 @@ QWidget#addGoalsButton:hover{
 	background-color: rgb(170, 170, 170);
 	border-radius:20px;
 	color: rgb(35,35,35);
+border: none;
+outline: none;
 }</string>
         </property>
         <property name="text">
@@ -1929,31 +1915,47 @@ text-align: center;
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="goalComplete">
+       <widget class="QPushButton" name="completeButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
-          <x>80</x>
+          <x>55</x>
           <y>440</y>
-          <width>131</width>
-          <height>21</height>
+          <width>180</width>
+          <height>30</height>
          </rect>
         </property>
         <property name="font">
          <font>
           <family>Poppins</family>
           <pointsize>12</pointsize>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QLabel#goalName{
-	color: rgb(0, 0, 0);
+         <string notr="true">QWidget#completeButton{
+	background-color: rgb(90, 90, 90);
+	border-radius:10px;
+	color: rgb(255,255,255);
+border: none;
+outline: none;
+}
+
+QWidget#completeButton:hover{
+	background-color: rgb(195, 195, 195);
+	border-radius:10px;
+	color: rgb(255,255,255);
+border: none;
+outline: none;
 }</string>
         </property>
         <property name="text">
-         <string/>
+         <string>Complete !</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
        <zorder>closeButton</zorder>
@@ -1965,7 +1967,7 @@ text-align: center;
        <zorder>goalBar</zorder>
        <zorder>goalName</zorder>
        <zorder>goalAmount</zorder>
-       <zorder>goalComplete</zorder>
+       <zorder>completeButton</zorder>
       </widget>
      </widget>
     </widget>
@@ -1976,7 +1978,7 @@ text-align: center;
       </property>
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>-2</x>
         <y>0</y>
         <width>60</width>
         <height>600</height>
@@ -2001,16 +2003,8 @@ border-bottom-left-radius:40px;
        <property name="styleSheet">
         <string notr="true">QWidget#accountButton_3{
 image: url(:/new/prefix1/icons//user.svg);
-}
-QWidget#accountButton_3:checked{
 border: none;
 outline: none;
-	image: url(:/new/prefix1/icons/user_clicked.svg);
-}
-QWidget#accountButton_3:pressed{
-border: none;
-outline: none;
-	image: url(:/new/prefix1/icons/user_clicked.svg);
 }</string>
        </property>
        <property name="text">
@@ -2023,7 +2017,7 @@ outline: none;
         </size>
        </property>
        <property name="checkable">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="flat">
         <bool>true</bool>
@@ -2043,18 +2037,11 @@ outline: none;
        </property>
        <property name="styleSheet">
         <string notr="true">QWidget#chartButton_3{
-	image: url(:/new/prefix1/icons/pie-chart.svg);
-}
-QWidget#chartButton_3:checked{
+	image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
 border: none;
 outline: none;
-image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
 }
-QWidget#chartButton_3:pressed{
-border: none;
-outline: none;
-image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
-}</string>
+</string>
        </property>
        <property name="text">
         <string/>
@@ -2066,7 +2053,10 @@ image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
         </size>
        </property>
        <property name="checkable">
-        <bool>true</bool>
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
        </property>
        <property name="default">
         <bool>false</bool>
@@ -2087,16 +2077,8 @@ image: url(:/new/prefix1/icons/pie-chart_clicked.svg);
        <property name="styleSheet">
         <string notr="true">QWidget#homeButton_3{
 image: url(:/new/prefix1/icons/home.svg);
-}
-QWidget#homeButton_3:checked{
 border: none;
 outline: none;
-	image: url(:/new/prefix1/icons/home_clicked.svg);
-}
-QWidget#homeButton_3:pressed{
-border: none;
-outline: none;
-	image: url(:/new/prefix1/icons/home_clicked.svg);
 }</string>
        </property>
        <property name="text">
@@ -2109,10 +2091,10 @@ outline: none;
         </size>
        </property>
        <property name="checkable">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="checked">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="default">
         <bool>false</bool>
@@ -2125,7 +2107,7 @@ outline: none;
      <widget class="QWidget" name="mainMenuWidget_3" native="true">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>58</x>
         <y>0</y>
         <width>840</width>
         <height>600</height>
@@ -2150,9 +2132,9 @@ border-bottom-right-radius:40px;
        <property name="geometry">
         <rect>
          <x>550</x>
-         <y>0</y>
+         <y>-1</y>
          <width>291</width>
-         <height>601</height>
+         <height>602</height>
         </rect>
        </property>
        <property name="styleSheet">

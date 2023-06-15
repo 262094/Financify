@@ -17,7 +17,7 @@ class Transactions : public QMainWindow
 public:
     explicit Transactions(MainWindow* mainWindow, QWidget* parent = nullptr);
 
-    void AddTransaction(float amount, QDateTime date, QString type);
+    void AddTransaction(float amount, QDateTime date, QString type, QString type2);
 
 private:
     DatabaseManager& m_dbManager;

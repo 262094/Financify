@@ -56,7 +56,7 @@ private:
 
 public slots:
     void nextWindow(int);
-    void handleFilterChanged(int index);
+    void handleFilterChanged();
 
 private slots:
     void on_loginButton_clicked();
@@ -74,5 +74,8 @@ private slots:
     void on_chartButton_clicked();
     void on_closeButton_8_clicked();
     void on_homeButton_3_clicked();
+    void on_completeButton_clicked();
+    void on_accountButton_clicked();
+    void on_homeButton_clicked();
 };
 #endif // MAINWINDOW_H

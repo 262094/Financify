@@ -32,9 +32,9 @@ border: 2px solid black;
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>90</x>
       <y>80</y>
-      <width>151</width>
+      <width>171</width>
       <height>40</height>
      </rect>
     </property>

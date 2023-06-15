@@ -5,13 +5,13 @@ Transactions::Transactions(MainWindow* mainWindow, QWidget* parent)
     , m_dbManager(DatabaseManager::getInstance())
     , m_mainWindow(mainWindow){}
 
-void Transactions::AddTransaction(float amount, QDateTime date, QString type)
+void Transactions::AddTransaction(float amount, QDateTime date, QString type, QString type2)
 {
     UserSession& userSession = UserSession::getInstance();
     int userId = userSession.getUserId();
 
-    QString query_prepare = QString("INSERT INTO transactions (user_id, date, type, amount) VALUES ('%1', '%2', '%3', '%4')")
-                                .arg(QString::number(userId), date.toString("yyyy-MM-dd HH:mm"), type, QString::number(amount));
+    QString query_prepare = QString("INSERT INTO transactions (user_id, date, type, amount, type2) VALUES ('%1', '%2', '%3', '%4', '%5')")
+                                .arg(QString::number(userId), date.toString("yyyy-MM-dd HH:mm"), type, QString::number(amount), type2);
 
     if (!m_dbManager.executeQuery(query_prepare))
     {
@@ -26,5 +26,5 @@ void Transactions::AddTransaction(float amount, QDateTime date, QString type)
     m_dbManager.GetTotalAmount();
     m_mainWindow->showBalance();
     m_mainWindow->showGoal();
-    m_mainWindow->handleFilterChanged(0);
+    m_mainWindow->handleFilterChanged();
 }

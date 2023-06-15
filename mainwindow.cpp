@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->horizontalHeader()->setVisible(false);
     ui->tableWidget->setShowGrid(false);
 
+    ui->completeButton->hide();
+
     m_userManager = new userManager();
     m_transactions = new Transactions(this);
     m_goals = new Goals(this);
@@ -37,21 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_userManager, m_userManager->LoginSuccess, this, &MainWindow::nextWindow);
     connect(m_userManager, m_userManager->RegisterSuccess, this, &MainWindow::nextWindow);
 
-    connect(ui->filterComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handleFilterChanged(int)));
-
-
-    /*connect(ui->loginButton, &QPushButton::clicked, this, &MainWindow::on_loginButton_clicked);
-    connect(ui->registerButton, &QPushButton::clicked, this, &MainWindow::on_registerButton_clicked);
-    connect(ui->signupButton, &QPushButton::clicked, this, &MainWindow::on_signupButton_clicked);
-    connect(ui->signinButton, &QPushButton::clicked, this, &MainWindow::on_signinButton_clicked);*/
-
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->setExclusive(true);
-
-    buttonGroup->addButton(ui->homeButton);
-    buttonGroup->addButton(ui->settingsButton);
-    buttonGroup->addButton(ui->chartButton);
-    buttonGroup->addButton(ui->accountButton);
+    connect(ui->filterComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handleFilterChanged()));
 }
 
 MainWindow::~MainWindow()
@@ -71,6 +59,10 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
     move(event->globalPosition().x() - m_nMouseClick_X_Coordinate, event->globalPosition().y() - m_nMouseClick_Y_Coordinate);
 }
 
+void MainWindow::on_startButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
 
 void MainWindow::on_loginButton_clicked()
 {
@@ -160,7 +152,7 @@ void MainWindow::nextWindow(int index)
             m_dbManager.GetAmount();
             showBalance();
             showGoal();
-            handleFilterChanged(0);
+            handleFilterChanged();
             break;
         case 1:
             ui->stackedWidget->setCurrentIndex(0);
@@ -191,60 +183,43 @@ void MainWindow::showBalance()
     ui->totalBalance->setText(QString("$")+QString::number(UserSession::getInstance().getTotalAmount()));
 }
 
-void MainWindow::handleFilterChanged(int index)
+void MainWindow::handleFilterChanged()
 {
     QString filterValue = ui->filterComboBox->currentText();
 
+    QDate currentDate = QDate::currentDate();
+    QDate startDate;
+
+    QTime startTime(0, 0);
+    QTime endTime(23, 59);
+
+    QDateTime startDateTime;
+    QDateTime endDateTime(currentDate, endTime);
+
     if (filterValue == "This day")
     {
-        QDate currentDate = QDate::currentDate();
-        QTime startTime(0, 0);
-        QTime endTime(23, 59);
-
-        QDateTime startDateTime(currentDate, startTime);
-        QDateTime endDateTime(currentDate, endTime);
-
-        m_dbManager.FetchTransactionsData(ui->tableWidget, startDateTime, endDateTime);
+        startDateTime = QDateTime(currentDate, startTime);
     }
 
     else if (filterValue == "This week")
     {
-        QDate currentDate = QDate::currentDate();
-        QDate startDate = currentDate.addDays(-6);
-        QTime startTime(0, 0);
-        QTime endTime(23, 59);
-
-        QDateTime startDateTime(startDate, startTime);
-        QDateTime endDateTime(currentDate, endTime);
-
-        m_dbManager.FetchTransactionsData(ui->tableWidget, startDateTime, endDateTime);
+        startDate = currentDate.addDays(-6);
+        startDateTime = QDateTime(startDate, startTime);
     }
 
     else if (filterValue == "This month")
     {
-        QDate currentDate = QDate::currentDate();
-        QDate startDate = currentDate.addDays(-30);
-        QTime startTime(0, 0);
-        QTime endTime(23, 59);
-
-        QDateTime startDateTime(startDate, startTime);
-        QDateTime endDateTime(currentDate, endTime);
-
-        m_dbManager.FetchTransactionsData(ui->tableWidget, startDateTime, endDateTime);
+        startDate = currentDate.addDays(-30);
+        startDateTime = QDateTime(startDate, startTime);
     }
 
     else if (filterValue == "This year")
     {
-        QDate currentDate = QDate::currentDate();
         QDate startDate = currentDate.addDays(-365);
-        QTime startTime(0, 0);
-        QTime endTime(23, 59);
-
-        QDateTime startDateTime(startDate, startTime);
-        QDateTime endDateTime(currentDate, endTime);
-
-        m_dbManager.FetchTransactionsData(ui->tableWidget, startDateTime, endDateTime);
+        startDateTime = QDateTime(startDate, startTime);
     }
+
+    m_dbManager.FetchTransactionsData(ui->tableWidget, startDateTime, endDateTime);
 
 }
 
@@ -260,30 +235,44 @@ void MainWindow::on_addGoalsButton_clicked()
 
 void MainWindow::showGoal()
 {
-    m_dbManager.FetchGoalData(ui->goalName, ui->goalAmount, ui->goalComplete, ui->goalBar);
+    m_dbManager.FetchGoalData(ui->goalName, ui->goalAmount, ui->completeButton, ui->goalBar);
 }
 
 
-void MainWindow::on_signinButton_2_clicked()  //przeniesienie na strone o stronie
+void MainWindow::on_signinButton_2_clicked()
 {
-     QDesktopServices::openUrl(QUrl("http://localhost/financify/financify.php"));
+    QDesktopServices::openUrl(QUrl("http://localhost/financify/financify.php"));
 }
 
-void MainWindow::on_startButton_clicked()
-{
-     ui->stackedWidget->setCurrentIndex(0);
-}
-
-
+// glowne okno
 void MainWindow::on_chartButton_clicked()
 {
-     ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 
+void MainWindow::on_accountButton_clicked()
+{
+
+}
+
+
+void MainWindow::on_homeButton_clicked()
+{
+    if (ui->stackedWidget->currentIndex() != 2)
+        ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::on_completeButton_clicked()
+{
+    m_goals->DeleteGoalData();
+    showGoal();
+}
+
+//okno chart
 void MainWindow::on_closeButton_8_clicked()
 {
-     this -> close();
+    this->close();
 }
 
 
@@ -291,4 +280,3 @@ void MainWindow::on_homeButton_3_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
-
