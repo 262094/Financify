@@ -21,6 +21,7 @@ public:
     void Registration(QString username, QString password, QString name, QString email);
     void Login(QString username, QString password);
 
+
 signals:
     void LoginSuccess(int index);
     void RegisterSuccess(int index);

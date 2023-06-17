@@ -31,6 +31,8 @@ void userManager::Login(QString username, QString password)
 
 }
 
+
+
 void userManager::Registration(QString username, QString password, QString name, QString email)
 {
     QByteArray pass = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5).toHex();
@@ -77,3 +79,5 @@ bool userManager::isValidPassword(const QString& password) {
     static QRegularExpression passwordRegex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%])[a-zA-Z\\d!@#$%]{8,}$");
     return passwordRegex.match(password).hasMatch();
 }
+
+

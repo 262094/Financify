@@ -47,3 +47,15 @@ float UserSession::getTotalAmount() const
 {
     return totalAmount_;
 }
+
+void UserSession::setTotalexpense(float totalExpense)
+{
+    totalExpenses_ = totalExpense;
+}
+
+void UserSession::setTotalincome(float totalIncome)
+{
+    totalIncome_ = totalIncome;
+}
+
+

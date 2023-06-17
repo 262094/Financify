@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "charts.h"
 #include <QDesktopServices>
 #include <QUrl>
 
@@ -30,16 +31,19 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->horizontalHeader()->setVisible(false);
     ui->tableWidget->setShowGrid(false);
 
+
     ui->completeButton->hide();
 
     m_userManager = new userManager();
     m_transactions = new Transactions(this);
     m_goals = new Goals(this);
+    m_charts = new charts(this);
 
     connect(m_userManager, m_userManager->LoginSuccess, this, &MainWindow::nextWindow);
     connect(m_userManager, m_userManager->RegisterSuccess, this, &MainWindow::nextWindow);
 
     connect(ui->filterComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handleFilterChanged()));
+
 }
 
 MainWindow::~MainWindow()
@@ -47,6 +51,7 @@ MainWindow::~MainWindow()
     delete m_userManager;
     delete ui;
 }
+
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
@@ -66,6 +71,7 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::on_loginButton_clicked()
 {
+
     QString username = ui->loginEdit->text();
     QString password = ui->passwordEdit->text();
 
@@ -147,7 +153,6 @@ void MainWindow::nextWindow(int index)
     switch (index)
     {
         case 0:
-            delete m_userManager;
             ui->stackedWidget->setCurrentIndex(2);
             m_dbManager.GetAmount();
             showBalance();
@@ -248,12 +253,14 @@ void MainWindow::on_signinButton_2_clicked()
 void MainWindow::on_chartButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+
+    m_charts -> createChart(ui->horizontalFrame, ui->horizontalFrame_2);
 }
 
 
 void MainWindow::on_accountButton_clicked()
 {
-
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 
@@ -280,3 +287,43 @@ void MainWindow::on_homeButton_3_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
+
+void MainWindow::on_closeButton_10_clicked()
+{
+    this -> close();
+}
+
+
+void MainWindow::on_homeButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+
+void MainWindow::on_chartButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+
+    m_charts -> createChart(ui->horizontalFrame, ui->horizontalFrame_2);
+
+
+}
+
+
+void MainWindow::on_accountButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+
+void MainWindow::on_logoutButton_2_clicked()
+{
+   ui->stackedWidget->setCurrentIndex(0);
+   UserSession::getInstance().setUserId(0);
+   UserSession::getInstance().setTotalexpense(0.0);
+   UserSession::getInstance().setTotalincome(0.0);
+   UserSession::getInstance().setTotalAmount(0.0);
+   ui->goalBar->setValue(0);
+}
+
+

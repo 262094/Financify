@@ -5,6 +5,9 @@
 #include <QMouseEvent>
 #include <QButtonGroup>
 #include <QTimer>
+#include <Qtcharts>
+#include <QChartView>
+#include <QPieSeries>
 
 #include "usermanager.h"
 #include "databasemanager.h"
@@ -12,6 +15,7 @@
 #include "transactions.h"
 #include "goalswindow.h"
 #include "goals.h"
+#include "charts.h"
 
 class Transactions;
 class transactionsWindow;
@@ -42,6 +46,8 @@ private:
 
     transactionsWindow * m_transactionsWindow{nullptr};
     Transactions* m_transactions{nullptr};
+
+    charts* m_charts{nullptr};
 
     DatabaseManager& m_dbManager;
 
@@ -77,5 +83,10 @@ private slots:
     void on_completeButton_clicked();
     void on_accountButton_clicked();
     void on_homeButton_clicked();
+    void on_closeButton_10_clicked();
+    void on_homeButton_4_clicked();
+    void on_chartButton_4_clicked();
+    void on_accountButton_3_clicked();
+    void on_logoutButton_2_clicked();
 };
 #endif // MAINWINDOW_H
