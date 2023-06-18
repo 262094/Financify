@@ -14,6 +14,7 @@
 #include <QLabel>
 #include <QProgressBar>
 #include <QPushButton>
+#include <QtCharts>
 
 #include "databasereader.h"
 #include "usersession.h"
@@ -34,6 +35,8 @@ public:
     void FetchTransactionsData(QTableWidget* tableWidget, const QDateTime& startDateTime, const QDateTime& endDateTime);
     bool CheckGoalsTable();
     void FetchGoalData(QLabel* goalNameLabel, QLabel* goalAmountLabel, QPushButton* completeButton, QProgressBar* progressBar);
+    void chartView(QPieSeries* series, QPieSeries* series2);
+
 
 private:
     QSqlDatabase db;

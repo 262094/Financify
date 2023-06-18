@@ -18,6 +18,9 @@ public:
 
     void setTotalAmount(float totalAmount);
     float getTotalAmount() const;
+    void setTotalexpense(float totalExpense);
+    void setTotalincome(float totalIncome);
+
 
 private:
     UserSession(const UserSession&) = delete;
@@ -27,6 +30,7 @@ private:
     float totalExpenses_;
     float totalIncome_;
     float totalAmount_;
+
 };
 
 #endif // USERSESSION_H

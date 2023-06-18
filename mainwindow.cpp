@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "charts.h"
 #include <QDesktopServices>
 #include <QUrl>
 
@@ -40,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_userManager, m_userManager->RegisterSuccess, this, &MainWindow::nextWindow);
 
     connect(ui->filterComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handleFilterChanged()));
+
 }
 
 MainWindow::~MainWindow()
@@ -66,6 +68,7 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::on_loginButton_clicked()
 {
+
     QString username = ui->loginEdit->text();
     QString password = ui->passwordEdit->text();
 
@@ -99,7 +102,6 @@ void MainWindow::on_signinButton_clicked()
     ui->emailEdit->clear();
 }
 
-
 void MainWindow::on_showButton_clicked()
 {
     if(ui->passwordEdit_2->echoMode() == QLineEdit::Password)
@@ -128,7 +130,6 @@ void MainWindow::on_showButton_2_clicked()
     }
 }
 
-
 void MainWindow::on_infoButton_clicked()
 {
     QMessageBox::about(this, "Information", "The password must be at least 8 characters long, with at least one lowercase letter, one uppercase letter and one number.");
@@ -147,7 +148,6 @@ void MainWindow::nextWindow(int index)
     switch (index)
     {
         case 0:
-            delete m_userManager;
             ui->stackedWidget->setCurrentIndex(2);
             m_dbManager.GetAmount();
             showBalance();
@@ -169,7 +169,6 @@ void MainWindow::on_addFundsButton_clicked()
         m_transactionsWindow->show();
     }
 }
-
 
 void MainWindow::on_closeButton_clicked()
 {
@@ -247,13 +246,21 @@ void MainWindow::on_signinButton_2_clicked()
 // glowne okno
 void MainWindow::on_chartButton_clicked()
 {
+    if (m_charts)
+    {
+        m_charts->destroyChart();
+        delete m_charts;
+        m_charts = nullptr;
+    }
+
+    m_charts = new charts();
+    m_charts->createChart(ui->horizontalFrame, ui->horizontalFrame_2);
     ui->stackedWidget->setCurrentIndex(3);
 }
 
-
 void MainWindow::on_accountButton_clicked()
 {
-
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 
@@ -275,8 +282,46 @@ void MainWindow::on_closeButton_8_clicked()
     this->close();
 }
 
-
 void MainWindow::on_homeButton_3_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::on_closeButton_10_clicked()
+{
+    this->close();
+}
+
+void MainWindow::on_homeButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::on_chartButton_4_clicked()
+{
+    if (m_charts)
+    {
+        m_charts->destroyChart();
+        delete m_charts;
+        m_charts = nullptr;
+    }
+
+    m_charts = new charts();
+    m_charts->createChart(ui->horizontalFrame, ui->horizontalFrame_2);
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_accountButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+void MainWindow::on_logoutButton_2_clicked()
+{
+   ui->stackedWidget->setCurrentIndex(0);
+   UserSession::getInstance().setUserId(0);
+   UserSession::getInstance().setTotalexpense(0.0);
+   UserSession::getInstance().setTotalincome(0.0);
+   UserSession::getInstance().setTotalAmount(0.0);
+   ui->goalBar->setValue(0);
 }
